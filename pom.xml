@@ -5,6 +5,7 @@
   <packaging>pom</packaging>
   <modules>
     <module>steam-common</module>
+    <module>steam-core</module>
   </modules>
   <parent>
     <groupId>org.springframework.boot</groupId>
