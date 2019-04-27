@@ -1,0 +1,26 @@
+server:
+  port: 8080
+
+mybatis:
+  config-location: classpath:META-INF/mybatis-config.xml
+  mapper-locations: classpath:META-INF/mappers/*.xml
+
+spring:
+  application:
+    name: steam-core
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://rm-2zeln81er224nwfh9eo.mysql.rds.aliyuncs.com:3306/zgame?useSSL=false&autoReconnect=true&tinyInt1isBit=false&useUnicode=true&characterEncoding=utf8&serverTimezone=CTT
+    username: zgame
+    password: zxcv123456!
+  redis:
+    host: 127.0.0.1
+    timeout: 5000ms
+    password:
+    lettuce:
+      pool:
+        max-active: 8
+        max-idle: 8
+        min-idle: 0
+
+

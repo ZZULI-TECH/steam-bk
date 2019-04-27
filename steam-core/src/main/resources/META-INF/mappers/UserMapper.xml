@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.steam.core.repository.UserRepository">
+  <resultMap id="userResultMap" type="org.steam.core.model.entity.User">
+    <id column="id" property="id"/>
+    <result column="name" property="name"/>
+    <result column="age" property="age"/>
+    <result column="version" property="version"/>
+    <result column="gmt_create" property="gmtCreate"/>
+    <result column="gmt_modified" property="gmtModified"/>
+  </resultMap>
+
+  <insert id="insert">
+    INSERT INTO s_user (
+      id, name, age, gmt_create, gmt_modified
+    )
+    VALUES (
+      #{id}, #{name}, #{age}, NOW(), NOW()
+    )
+  </insert>
+
+  <select id="findById" parameterType="java.lang.Long" resultMap="userResultMap">
+    SELECT id, name, age, gmt_create, gmt_modified
+    FROM s_user WHERE id = #{id}
+  </select>
+</mapper>

@@ -27,12 +27,20 @@
     <maven-compiler-plugin.version>3.5.1</maven-compiler-plugin.version>
     <maven-javadoc-plugin.version>2.10.4</maven-javadoc-plugin.version>
     <maven-source-plugin.version>3.0.1</maven-source-plugin.version>
+    <spring-cloud.version>Finchley.RELEASE</spring-cloud.version>
+    <saga.version>0.2.1</saga.version>
     <mysql-connector-java.version>8.0.13</mysql-connector-java.version>
     <HikariCP.version>3.2.0</HikariCP.version>
     <orika-spring-boot-starter.version>1.8.0</orika-spring-boot-starter.version>
     <mybatis.version>3.4.2</mybatis.version>
     <mybatis-spring.version>1.3.0</mybatis-spring.version>
+    <mybatis-typehandlers-jsr310.version>1.0.2</mybatis-typehandlers-jsr310.version>
     <lombok>1.18.4</lombok>
+    <jedis.version>2.6.1</jedis.version>
+    <springfox-swagger-ui.version>2.6.1</springfox-swagger-ui.version>
+    <jjwt.version>0.9.0</jjwt.version>
+    <fastjson.version>1.2.47</fastjson.version>
+    <javaee-api.version>8.0</javaee-api.version>
   </properties>
 
   <dependencies>
@@ -71,6 +79,8 @@
         <artifactId>orika-spring-boot-starter</artifactId>
         <version>${orika-spring-boot-starter.version}</version>
       </dependency>
+
+      <!-- mybatis -->
       <dependency>
         <groupId>org.mybatis</groupId>
         <artifactId>mybatis</artifactId>
@@ -87,9 +97,54 @@
         <version>${mybatis-spring.version}</version>
       </dependency>
       <dependency>
+        <groupId>org.mybatis</groupId>
+        <artifactId>mybatis-typehandlers-jsr310</artifactId>
+        <version>${mybatis-typehandlers-jsr310.version}</version>
+      </dependency>
+
+      <dependency>
         <groupId>org.projectlombok</groupId>
         <artifactId>lombok</artifactId>
         <version>${lombok.version}</version>
+      </dependency>
+
+      <!-- swagger -->
+      <dependency>
+        <groupId>io.springfox</groupId>
+        <artifactId>springfox-swagger2</artifactId>
+        <version>${springfox-swagger-ui.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>io.springfox</groupId>
+        <artifactId>springfox-swagger-ui</artifactId>
+        <version>${springfox-swagger-ui.version}</version>
+      </dependency>
+
+      <!-- Cache -->
+      <dependency>
+        <groupId>redis.clients</groupId>
+        <artifactId>jedis</artifactId>
+        <version>${jedis.version}</version>
+      </dependency>
+
+      <!-- JWT -->
+      <dependency>
+        <groupId>io.jsonwebtoken</groupId>
+        <artifactId>jjwt</artifactId>
+        <version>${jjwt.version}</version>
+      </dependency>
+
+      <!-- json -->
+      <dependency>
+        <groupId>com.alibaba</groupId>
+        <artifactId>fastjson</artifactId>
+        <version>${fastjson.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>javax</groupId>
+        <artifactId>javaee-api</artifactId>
+        <version>${javaee-api.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
