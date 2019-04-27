@@ -32,15 +32,13 @@
     <mysql-connector-java.version>8.0.13</mysql-connector-java.version>
     <HikariCP.version>3.2.0</HikariCP.version>
     <orika-spring-boot-starter.version>1.8.0</orika-spring-boot-starter.version>
-    <mybatis.version>3.4.2</mybatis.version>
-    <mybatis-spring.version>1.3.0</mybatis-spring.version>
-    <mybatis-typehandlers-jsr310.version>1.0.2</mybatis-typehandlers-jsr310.version>
     <lombok>1.18.4</lombok>
     <jedis.version>2.6.1</jedis.version>
     <springfox-swagger-ui.version>2.6.1</springfox-swagger-ui.version>
     <jjwt.version>0.9.0</jjwt.version>
     <fastjson.version>1.2.47</fastjson.version>
     <javaee-api.version>8.0</javaee-api.version>
+    <mybatis-plus.version>3.1.1</mybatis-plus.version>
   </properties>
 
   <dependencies>
@@ -80,26 +78,11 @@
         <version>${orika-spring-boot-starter.version}</version>
       </dependency>
 
-      <!-- mybatis -->
+      <!-- mybatis plus-->
       <dependency>
-        <groupId>org.mybatis</groupId>
-        <artifactId>mybatis</artifactId>
-        <version>${mybatis.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.mybatis</groupId>
-        <artifactId>mybatis-spring</artifactId>
-        <version>${mybatis-spring.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.mybatis.spring.boot</groupId>
-        <artifactId>mybatis-spring-boot-starter</artifactId>
-        <version>${mybatis-spring.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.mybatis</groupId>
-        <artifactId>mybatis-typehandlers-jsr310</artifactId>
-        <version>${mybatis-typehandlers-jsr310.version}</version>
+        <groupId>com.baomidou</groupId>
+        <artifactId>mybatis-plus-boot-starter</artifactId>
+        <version>${mybatis-plus.version}</version>
       </dependency>
 
       <dependency>
