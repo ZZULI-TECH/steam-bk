@@ -1,4 +1,4 @@
-# steam-bk
+# steam-bk  [![Build Status](https://travis-ci.org/ZZULI-TECH/steam-bk.svg?branch=master)](https://travis-ci.org/ZZULI-TECH/steam-bk) 
 
 Backend for a  powerful steam platform.
 
