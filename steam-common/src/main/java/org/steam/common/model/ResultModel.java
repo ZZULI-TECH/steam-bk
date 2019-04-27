@@ -12,12 +12,12 @@ import java.io.Serializable;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class ResultModel implements Serializable {
+public class ResultModel<T> implements Serializable {
     private static final long serialVersionUID = -3161231835832768735L;
 
     private long code;
     private String message;
-    private Object content;
+    private T content;
 
     public ResultModel() {}
 
@@ -26,7 +26,7 @@ public class ResultModel implements Serializable {
         this.message = message;
     }
 
-    public ResultModel(long code, String message, Object content) {
+    public ResultModel(long code, String message, T content) {
         this.code = code;
         this.message = message;
         this.content = content;
