@@ -47,7 +47,7 @@ public class CurrentUserMethodArgumentResolver implements HandlerMethodArgumentR
         long currentUserId = (long)source;
         User user = null;
         if (currentUserId != 0) {
-            return userService.findById(currentUserId);
+            return userService.getById(currentUserId);
         }
         // 400 - Bad Request
         throw new MissingServletRequestPartException(Constants.CURRENT_USER_ID);

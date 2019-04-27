@@ -1,9 +1,7 @@
 server:
   port: 8080
 
-mybatis:
-  config-location: classpath:META-INF/mybatis-config.xml
-  mapper-locations: classpath:META-INF/mappers/*.xml
+
 
 spring:
   application:
@@ -23,4 +21,15 @@ spring:
         max-idle: 8
         min-idle: 0
 
+mybatis-plus:
+  mapper-locations: classpath*:/META-INF/mappers/**Mapper.xml
+  typeAliasesPackage: org.steam.core.model.entity
+  global-config:
+    db-config:
+      id-type: auto #AUTO 自增  ; NONE 设置主键类型 ; INPUT 用户输入ID ; ID_WORKER 全局唯一ID (idWorker) ; UUID 全局唯一ID (UUID); ID_WORKER_STR 字符串全局唯一ID (idWorker 的字符串表示)
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: true #配置的缓存的全局开关
+    lazyLoadingEnabled: true #延时加载的开关
+    multipleResultSetsEnabled: true #开启的话，延时加载一个属性时会加载该对象全部属性，否则按需加载属性
 
