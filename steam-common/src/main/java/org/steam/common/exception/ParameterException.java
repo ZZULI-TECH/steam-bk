@@ -1,7 +1,7 @@
 package org.steam.common.exception;
 
 /**
- *  参数异常
+ * 参数异常
  *
  * @author mingshan
  */
