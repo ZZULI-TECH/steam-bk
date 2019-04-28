@@ -16,34 +16,22 @@ import org.steam.common.model.VersionEntity;
 @TableName(value = "t_users")
 public class User extends VersionEntity {
     private static final long serialVersionUID = 1132267485791852991L;
-
-    /**
-     * 主键ID
-     */
-    @TableId(value = "u_id", type = IdType.AUTO)
-    private long id;
-
     /**
      * 姓名
      */
-    private String name;
-
+    private String username;
     /**
      * 邮箱
-     * 注解@TableField可以手动指定映射的数据库字段名
      */
-    @TableField("email")
-    private String eeee;
-
+    private String email;
     /**
      * 地址
      */
     private String address;
-
     /**
-     * 下划线字段示例
-     * 由于在yml中配置了驼峰规则，划线字段的驼峰自动转换
+     * 密码
      */
-    private String doubleWords;
+    private String password;
+
 
 }

@@ -26,7 +26,7 @@ mybatis-plus:
   typeAliasesPackage: org.steam.core.model.entity
   global-config:
     db-config:
-      id-type: auto #AUTO 自增  ; NONE 设置主键类型 ; INPUT 用户输入ID ; ID_WORKER 全局唯一ID (idWorker) ; UUID 全局唯一ID (UUID); ID_WORKER_STR 字符串全局唯一ID (idWorker 的字符串表示)
+      id-type: ID_WORKER #AUTO 自增  ; NONE 设置主键类型 ; INPUT 用户输入ID ; ID_WORKER 全局唯一ID (idWorker) ; UUID 全局唯一ID (UUID); ID_WORKER_STR 字符串全局唯一ID (idWorker 的字符串表示)
   configuration:
     map-underscore-to-camel-case: true
     cache-enabled: true #配置的缓存的全局开关
