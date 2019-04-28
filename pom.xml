@@ -39,6 +39,7 @@
     <fastjson.version>1.2.47</fastjson.version>
     <javaee-api.version>8.0</javaee-api.version>
     <mybatis-plus.version>3.1.1</mybatis-plus.version>
+    <freemarker.version>2.3.28</freemarker.version>
   </properties>
 
   <dependencies>
@@ -83,6 +84,18 @@
         <groupId>com.baomidou</groupId>
         <artifactId>mybatis-plus-boot-starter</artifactId>
         <version>${mybatis-plus.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.baomidou</groupId>
+        <artifactId>mybatis-plus-generator</artifactId>
+        <version>${mybatis-plus.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.freemarker</groupId>
+        <artifactId>freemarker</artifactId>
+        <version>${freemarker.version}</version>
       </dependency>
 
       <dependency>
