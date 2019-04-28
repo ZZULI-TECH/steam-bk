@@ -1,13 +1,10 @@
 package org.steam.core.model.entity;
 
-import org.steam.common.model.VersionEntity;
 import com.baomidou.mybatisplus.annotation.TableName;
-
-import java.time.LocalDateTime;
-
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
+import org.steam.common.model.VersionEntity;
 
 /**
  * <p>
