@@ -1,6 +1,7 @@
 package org.steam.common.model;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -11,6 +12,7 @@ import java.time.LocalDateTime;
  * @author mingshan
  */
 @Data
+@EqualsAndHashCode(callSuper = false)
 public class Entity implements Serializable {
     private static final long serialVersionUID = -6785900030151893453L;
 
