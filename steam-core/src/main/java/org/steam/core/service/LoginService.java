@@ -1,7 +1,7 @@
 package org.steam.core.service;
 
 import org.steam.common.exception.ServiceException;
-import org.steam.core.model.dto.Login;
+import org.steam.core.model.dto.LoginDTO;
 import org.steam.core.model.entity.Token;
 import org.steam.core.model.entity.User;
 
@@ -19,7 +19,7 @@ public interface LoginService {
      * @return token
      * @throws ServiceException
      */
-    Token login(Login login) throws ServiceException;
+    Token login(LoginDTO login) throws ServiceException;
 
     /**
      * 登出

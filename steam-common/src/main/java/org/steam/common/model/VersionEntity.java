@@ -12,5 +12,5 @@ public class VersionEntity extends Entity {
     private static final long serialVersionUID = 7193087800976439514L;
 
     // 乐观锁版本号
-    private long version;
+    private Long version;
 }

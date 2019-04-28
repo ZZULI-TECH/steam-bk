@@ -11,6 +11,7 @@ import org.steam.common.exception.ServiceException;
 import org.steam.common.model.ResultModel;
 import org.steam.common.util.MD5Util;
 import org.steam.core.model.dto.Login;
+import org.steam.core.model.dto.LoginDTO;
 import org.steam.core.model.entity.Token;
 import org.steam.core.model.entity.User;
 import org.steam.core.service.LoginService;
@@ -30,7 +31,7 @@ public class LoginServiceImpl implements LoginService {
     private TokenService tokenService;
 
     @Override
-    public Token login(Login login) {
+    public Token login(LoginDTO login) {
         String email = login.getEmail();
         String password = login.getPassword();
 

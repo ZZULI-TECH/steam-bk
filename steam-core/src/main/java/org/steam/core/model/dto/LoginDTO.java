@@ -8,7 +8,7 @@ import java.io.Serializable;
  * @author mingshan
  */
 @Data
-public class Login implements Serializable {
+public class LoginDTO implements Serializable {
     private String email;
     private String password;
 }

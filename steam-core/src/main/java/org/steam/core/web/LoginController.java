@@ -14,7 +14,7 @@ import org.steam.common.annotation.Authorization;
 import org.steam.common.annotation.CurrentUser;
 import org.steam.common.constant.Constants;
 import org.steam.common.model.ResultModel;
-import org.steam.core.model.dto.Login;
+import org.steam.core.model.dto.LoginDTO;
 import org.steam.core.model.entity.Token;
 import org.steam.core.model.entity.User;
 import org.steam.core.model.vo.TokenVO;
@@ -44,7 +44,7 @@ public class LoginController {
     @RequestMapping(method = RequestMethod.POST)
     @ApiOperation(value="Log in", httpMethod="POST", notes="Login")
     public ResponseEntity<ResultModel> login(@RequestBody TokenVO tokenVO) {
-        Login login = orikaMapperFacade.map(tokenVO, Login.class);
+        LoginDTO login = orikaMapperFacade.map(tokenVO, LoginDTO.class);
         Token token = loginService.login(login);
         ResultModel<Token> model = ResultModel.<Token>builder()
                 .code(1001L)

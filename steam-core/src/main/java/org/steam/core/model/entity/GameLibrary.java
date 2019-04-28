@@ -24,11 +24,11 @@ public class GameLibrary extends VersionEntity {
     /**
      * 用户id
      */
-    private long uid;
+    private Long uid;
 
     /**
      * 游戏id
      */
-    private long gameId;
+    private Long gameId;
 
 }
