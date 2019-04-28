@@ -27,6 +27,10 @@ public class Constants {
      */
     public static final String AUTHORIZATION = "authorization";
 
+    /**
+     * 成功响应
+     */
+    public static final String RESPONSE_OK = "OK";
 
     // --------- JWT ---------------
 

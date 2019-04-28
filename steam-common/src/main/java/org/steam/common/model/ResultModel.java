@@ -1,5 +1,6 @@
 package org.steam.common.model;
 
+import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -11,7 +12,7 @@ import java.io.Serializable;
  * @author mingshan
  */
 @Data
-@EqualsAndHashCode(callSuper = false)
+@Builder
 public class ResultModel<T> implements Serializable {
     private static final long serialVersionUID = -3161231835832768735L;
 

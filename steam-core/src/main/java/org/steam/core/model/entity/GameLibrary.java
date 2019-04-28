@@ -22,21 +22,16 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 @TableName("t_game_library")
 public class GameLibrary extends VersionEntity {
-
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = -91297063149044971L;
 
     /**
      * 用户id
      */
-    private Long uid;
+    private long uid;
 
     /**
      * 游戏id
      */
-    private Long gameId;
-
-    private Long version;
-
-
+    private long gameId;
 
 }
