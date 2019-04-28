@@ -51,11 +51,11 @@ public class CodeGenerator {
 
         // 数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
-        dsc.setUrl("jdbc:mysql://localhost:3306/ant?useUnicode=true&useSSL=false&characterEncoding=utf8");
+        dsc.setUrl("jdbc:mysql://rm-2zeln81er224nwfh9eo.mysql.rds.aliyuncs.com:3306/zgame?useSSL=false&autoReconnect=true&tinyInt1isBit=false&useUnicode=true&characterEncoding=utf8&serverTimezone=CTT");
         // dsc.setSchemaName("public");
-        dsc.setDriverName("com.mysql.jdbc.Driver");
-        dsc.setUsername("root");
-        dsc.setPassword("密码");
+        dsc.setDriverName("com.mysql.cj.jdbc.Driver");
+        dsc.setUsername("zgame");
+        dsc.setPassword("zxcv123456!");
         mpg.setDataSource(dsc);
 
         // 包配置
@@ -83,7 +83,7 @@ public class CodeGenerator {
             @Override
             public String outputFile(TableInfo tableInfo) {
                 // 自定义输出文件名 ， 如果你 Entity 设置了前后缀、此处注意 xml 的名称会跟着发生变化！！
-                return projectPath + "/steam-core/src/main/resources/mapper/" + pc.getModuleName()
+                return projectPath + "/steam-core/src/main/resources/META-INF/mapper/"
                         + "/" + tableInfo.getEntityName() + "Mapper" + StringPool.DOT_XML;
             }
         });
@@ -97,14 +97,13 @@ public class CodeGenerator {
         StrategyConfig strategy = new StrategyConfig();
         strategy.setNaming(NamingStrategy.underline_to_camel);
         strategy.setColumnNaming(NamingStrategy.underline_to_camel);
-        strategy.setTablePrefix("t_");
+        strategy.setTablePrefix(new String[] { "t_" });
         strategy.setSuperEntityClass("org.steam.common.model.VersionEntity");
         strategy.setEntityLombokModel(true);
         strategy.setRestControllerStyle(true);
         strategy.setInclude(scanner("表名，多个英文逗号分割").split(","));
         strategy.setSuperEntityColumns("id");
         strategy.setControllerMappingHyphenStyle(true);
-        strategy.setTablePrefix(pc.getModuleName() + "_");
         mpg.setStrategy(strategy);
         mpg.setTemplateEngine(new FreemarkerTemplateEngine());
         mpg.execute();
