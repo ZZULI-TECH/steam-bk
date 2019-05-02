@@ -1,6 +1,7 @@
 package org.steam.core.web;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -13,6 +14,7 @@ import org.steam.core.service.UserService;
 
 import javax.validation.Valid;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -65,13 +67,13 @@ public class UserController {
      */
     @ApiOperation(value="查询所有，带分页", httpMethod="GET")
     @GetMapping("/list")
-    public ResultModel<User> selectList(Integer pageSize, Integer pageNum, User user){
+    public ResultModel<IPage> selectList(Integer pageSize, Integer pageNum, User user){
         Page<User> page = new Page<>();
         page.setSize(pageSize);
         page.setPages(pageNum);
         QueryWrapper<User> wrapper = new QueryWrapper<>();
         if (!StringUtils.isEmpty(user.getName())) {
-            wrapper.eq("user", user.getName());
+            wrapper.eq("name", user.getName());
         }
         if (!StringUtils.isEmpty(user.getSex())) {
             wrapper.eq("sex", user.getSex());
@@ -79,8 +81,8 @@ public class UserController {
         if (!StringUtils.isEmpty(user.getAge())) {
             wrapper.eq("age", user.getAge());
         }
-        userService.page(page, wrapper);
-        return ResultModel.ok();
+        IPage<User> users =  userService.page(page, wrapper);
+        return ResultModel.ok(users);
     }
 
 }
