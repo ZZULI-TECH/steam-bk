@@ -11,6 +11,8 @@ import lombok.ToString;
 @Setter
 @ToString
 public class RegisterVO {
+    private Integer age;
+    private String sex;
     private String userName;
     private String email;
     private String password;
