@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.steam.common.cache.RedisCache;
 import org.steam.common.constant.Constants;
-import org.steam.common.exception.ServiceException;
 import org.steam.core.model.entity.Token;
 import org.steam.core.model.entity.User;
 import org.steam.core.service.TokenService;

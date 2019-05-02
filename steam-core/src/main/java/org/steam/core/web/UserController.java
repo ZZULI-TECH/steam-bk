@@ -6,8 +6,12 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
+import org.steam.common.exception.ServerException;
+import org.steam.common.exception.ServiceException;
+import org.steam.common.exception.VersionException;
 import org.steam.common.model.ResultModel;
 import org.steam.core.model.entity.User;
 import org.steam.core.service.UserService;
@@ -51,10 +55,11 @@ public class UserController {
     @ApiOperation(value="删除", httpMethod="DELETE")
     @DeleteMapping("/{id}")
     public ResultModel<User> delete(@PathVariable Long id, @RequestParam("version") Long version){
-        Map<String, Object> map = new HashMap<>();
-        map.put("id", id);
-        map.put("version", version);
-        userService.removeByMap(map);
+        try {
+            userService.delete(id, version);
+        } catch (VersionException | ServiceException e) {
+            throw new ServerException(ResultModel.fail(e.getCode(), e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
         return ResultModel.ok();
     }
 

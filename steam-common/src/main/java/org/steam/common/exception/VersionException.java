@@ -5,18 +5,16 @@ package org.steam.common.exception;
  *
  * @author mingshan
  */
-public class VersionException extends Exception {
+public class VersionException extends BaseCodeMessageException {
     private static final long serialVersionUID = -8183259784734482522L;
-    private String message;
 
     public VersionException() { }
 
     public VersionException(String message) {
-        this.message = message;
+        super(1000L, message);
     }
 
-    @Override
-    public String getMessage() {
-        return this.message;
+    public long getCode() {
+        return 1000L;
     }
 }

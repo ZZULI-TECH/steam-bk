@@ -35,7 +35,6 @@ public class TokenUtil {
                 User user = JsonUtil.jsonToObject(subject, User.class);
                 return user;
             } catch (Exception e) {
-                e.printStackTrace();
                 log.error("解析JWT token 失败！");
             }
         }

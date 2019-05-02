@@ -34,10 +34,7 @@ public class ResultModel<T> implements Serializable {
     }
 
     public static <T> ResultModel<T> ok() {
-        return ResultModel.<T>builder()
-                .code(0L)
-                .message(Constants.RESPONSE_SUCCESS)
-                .build();
+        return ok(null);
     }
 
     public static <T> ResultModel<T> ok(T content) {
