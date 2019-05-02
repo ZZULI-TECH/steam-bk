@@ -36,7 +36,7 @@ public class AccountServiceImpl implements AccountService {
     private VerificationCodeService verificationCodeService;
 
     @Override
-    public Token login(String email, String password) {
+    public Token login(String email, String password) throws ServiceException {
         if (StringUtils.isEmpty(email) || StringUtils.isEmpty(password)) {
             throw new ParameterException("UserName or password is empty.");
         }
@@ -45,13 +45,7 @@ public class AccountServiceImpl implements AccountService {
 
         String newPassword = MD5Util.md5(password, email);
         if (user == null || !newPassword.equals(user.getPassword())) {
-            ResultModel<Token> result = ResultModel.<Token>builder()
-                    .code(1003L)
-                    .message("UserName or password is incorrect.")
-                    .build();
-
-            log.info("UserName or password is incorrect.");
-            throw new ServerException(result, HttpStatus.OK);
+            throw new ServiceException(1003L, "UserName or password is incorrect.");
         }
 
         Token token = tokenService.creatToken(user.getId());

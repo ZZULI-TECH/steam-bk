@@ -15,7 +15,7 @@ public interface MailService {
      * @param subject
      * @param content
      */
-    public void sendSimpleMail(String to, String subject, String content) throws ServiceException;
+    void sendSimpleMail(String to, String subject, String content) throws ServiceException;
 
     /**
      * 发送html邮件
@@ -24,7 +24,7 @@ public interface MailService {
      * @param subject
      * @param content
      */
-    public void sendHtmlMail(String to, String subject, String content) throws ServiceException;
+    void sendHtmlMail(String to, String subject, String content) throws ServiceException;
 
     /**
      * 发送带附件的邮件
@@ -34,7 +34,7 @@ public interface MailService {
      * @param content
      * @param filePath
      */
-    public void sendAttachmentsMail(String to, String subject, String content, String filePath) throws ServiceException;
+    void sendAttachmentsMail(String to, String subject, String content, String filePath) throws ServiceException;
 
     /**
      * 发送带静态资源的邮件
@@ -45,5 +45,6 @@ public interface MailService {
      * @param rscPath
      * @param rscId
      */
-    public void sendInlineResourceMail(String to, String subject, String content, String rscPath, String rscId) throws ServiceException;
+    void sendInlineResourceMail(String to, String subject, String content, String rscPath, String rscId)
+            throws ServiceException;
 }

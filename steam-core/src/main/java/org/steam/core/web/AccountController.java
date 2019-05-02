@@ -19,6 +19,7 @@ import org.steam.core.model.entity.User;
 import org.steam.core.model.vo.RegisterVO;
 import org.steam.core.model.vo.TokenVO;
 import org.steam.core.service.AccountService;
+import org.steam.core.service.VerificationCodeService;
 
 /**
  * 帐户
@@ -35,6 +36,9 @@ public class AccountController {
 
     @Autowired
     private MapperFacade orikaMapperFacade;
+
+    @Autowired
+    private VerificationCodeService verificationCodeService;
 
     /**
      * 登录
@@ -90,6 +94,21 @@ public class AccountController {
         ResultModel model;
         try {
             accountService.register(user, registerVO.getSeccode());
+            model = ResultModel.ok();
+        } catch (ServiceException e) {
+            model = ResultModel.fail(e.getCode(), e.getMessage());
+            throw new ServerException(model, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+        return new ResponseEntity<>(model, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/getSeccode", method = RequestMethod.GET)
+    @ApiOperation(value="获取验证码", httpMethod="GET", notes="获取验证码")
+    public ResponseEntity<ResultModel> getSeccode(@RequestParam("email") String email) {
+        ResultModel model;
+        try {
+            verificationCodeService.sendSeccode(email);
             model = ResultModel.ok();
         } catch (ServiceException e) {
             model = ResultModel.fail(e.getCode(), e.getMessage());

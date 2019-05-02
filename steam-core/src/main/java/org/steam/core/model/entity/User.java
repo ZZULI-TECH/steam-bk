@@ -8,6 +8,7 @@ import org.steam.common.model.VersionEntity;
  * 用户实体
  *
  * @author mingshan biao
+ * @modify liyufeng  add age,sex
  */
 @Data
 @TableName(value = "t_user")
@@ -17,6 +18,17 @@ public class User extends VersionEntity {
      * 姓名
      */
     private String username;
+
+    /**
+     * 年龄
+     */
+    private Integer age;
+
+    /**
+     * 性别
+     */
+    private String sex;
+
     /**
      * 邮箱
      */
@@ -29,6 +41,5 @@ public class User extends VersionEntity {
      * 密码
      */
     private String password;
-
 
 }
