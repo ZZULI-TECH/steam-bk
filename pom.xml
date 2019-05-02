@@ -40,6 +40,7 @@
     <javaee-api.version>8.0</javaee-api.version>
     <mybatis-plus.version>3.1.1</mybatis-plus.version>
     <freemarker.version>2.3.28</freemarker.version>
+    <junit.version>4.12</junit.version>
   </properties>
 
   <dependencies>
@@ -67,6 +68,12 @@
             <artifactId>protobuf-java</artifactId>
           </exclusion>
         </exclusions>
+      </dependency>
+      <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>${junit.version}</version>
+        <scope>test</scope>
       </dependency>
       <dependency>
         <groupId>com.zaxxer</groupId>

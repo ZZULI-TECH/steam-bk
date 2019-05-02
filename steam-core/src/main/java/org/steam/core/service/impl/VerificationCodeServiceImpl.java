@@ -23,7 +23,7 @@ public class VerificationCodeServiceImpl implements VerificationCodeService {
     };
     /** 并发随机数生成器 */
     private static final ThreadLocalRandom RANDOM = ThreadLocalRandom.current();
-    private static final String REGISTER_SUBJECT = "验证你的邮箱";
+    private static final String REGISTER_SUBJECT = "Steam邮箱验证";
     private static final String CODE_PREFIX = "secode";
 
     @Autowired
@@ -39,9 +39,9 @@ public class VerificationCodeServiceImpl implements VerificationCodeService {
         }
 
         String code = generateVerifyCode(4, CHARS);
-        mailService.sendSimpleMail(email, REGISTER_SUBJECT, code);
+        mailService.sendHtmlMail(email, REGISTER_SUBJECT, "您的验证码为: " +code + "，5分钟内有效");
         // 存入redis
-        redisCache.setEx(CODE_PREFIX + email, code, 2, TimeUnit.MINUTES);
+        redisCache.setEx(CODE_PREFIX + email, code, 5, TimeUnit.MINUTES);
     }
 
     @Override
@@ -60,7 +60,7 @@ public class VerificationCodeServiceImpl implements VerificationCodeService {
      * @return 生成的验证码
      */
     private static String generateVerifyCode(int verifySize, char[] sources) {
-        if(sources == null || sources.length == 0){
+        if (sources == null || sources.length == 0) {
             sources = CHARS;
         }
         int codesLen = sources.length;
