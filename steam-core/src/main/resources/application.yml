@@ -27,6 +27,8 @@ mybatis-plus:
   global-config:
     db-config:
       id-type: ID_WORKER #AUTO 自增  ; NONE 设置主键类型 ; INPUT 用户输入ID ; ID_WORKER 全局唯一ID (idWorker) ; UUID 全局唯一ID (UUID); ID_WORKER_STR 字符串全局唯一ID (idWorker 的字符串表示)
+      logic-delete-value: 1 # 逻辑已删除值(默认为 1)
+      logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
   configuration:
     map-underscore-to-camel-case: true
     cache-enabled: true #配置的缓存的全局开关
