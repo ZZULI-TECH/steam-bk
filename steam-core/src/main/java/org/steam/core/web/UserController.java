@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.*;
 import org.steam.common.model.ResultModel;
 import org.steam.core.model.entity.User;
 import org.steam.core.service.UserService;
+import org.steam.core.util.TokenUtil;
 
 import javax.validation.Valid;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -83,6 +83,19 @@ public class UserController {
         }
         IPage<User> users =  userService.page(page, wrapper);
         return ResultModel.ok(users);
+    }
+
+    /**
+     *
+     * @param auth
+     * @return
+     */
+    @ApiOperation(value="获取token", httpMethod="GET")
+    @GetMapping("/getInfo")
+    public ResultModel<User> selectList(@RequestParam String auth){
+      User user = TokenUtil.getUserFromToken(auth);
+      user.setPassword("");
+      return ResultModel.ok(user);
     }
 
 }
