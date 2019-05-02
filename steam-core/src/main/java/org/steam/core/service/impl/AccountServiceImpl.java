@@ -48,7 +48,7 @@ public class AccountServiceImpl implements AccountService {
             throw new ServiceException(1003L, "UserName or password is incorrect.");
         }
 
-        Token token = tokenService.creatToken(user.getId());
+        Token token = tokenService.creatToken(user);
         return token;
     }
 

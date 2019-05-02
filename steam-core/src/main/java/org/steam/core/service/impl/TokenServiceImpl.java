@@ -25,10 +25,9 @@ public class TokenServiceImpl implements TokenService {
     private RedisCache redisCache;
 
     @Override
-    public Token creatToken(long userId) {
-        User user = new User();
-        user.setId(userId);
+    public Token creatToken(User user) {
         String subject = JWTUtil.generalSubject(user);
+        long userId = user.getId();
         String token = JWTUtil.createJWT(userId, subject, Constants.JWT_TTL);
         Token model = new Token(userId, Constants.TOKEN_PREFIX + token);
 
@@ -39,8 +38,6 @@ public class TokenServiceImpl implements TokenService {
 
     @Override
     public void deleteToken(long userId) {
-        boolean broken = false;
-
         log.info("Delete token, userId: {}", userId);
         redisCache.delete(String.valueOf(userId));
     }
@@ -55,7 +52,7 @@ public class TokenServiceImpl implements TokenService {
             return false;
         }
         // 延长过期时间
-        redisCache.expire(String.valueOf(model.getUserId()), Constants.TOKEN_EXPIRES_HOUR * 3600, TimeUnit.MINUTES);
+        redisCache.expire(String.valueOf(model.getUserId()), Constants.TOKEN_EXPIRES_HOUR, TimeUnit.HOURS);
 
         return true;
     }
