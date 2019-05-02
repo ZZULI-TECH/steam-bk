@@ -26,12 +26,9 @@ public class CurrentUserMethodArgumentResolver implements HandlerMethodArgumentR
 
     @Override
     public boolean supportsParameter(MethodParameter methodParameter) {
-        if (methodParameter.getParameterType().isAssignableFrom(User.class)
-                && methodParameter.hasParameterAnnotation(CurrentUser.class)) {
-            return true;
-        }
+        return methodParameter.getParameterType().isAssignableFrom(User.class)
+                && methodParameter.hasParameterAnnotation(CurrentUser.class);
 
-        return false;
     }
 
     @Override
@@ -45,7 +42,6 @@ public class CurrentUserMethodArgumentResolver implements HandlerMethodArgumentR
         }
 
         long currentUserId = (long)source;
-        User user = null;
         if (currentUserId != 0) {
             return userService.getById(currentUserId);
         }

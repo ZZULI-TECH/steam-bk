@@ -40,11 +40,6 @@ public class Constants {
     public static final String TOKEN_PREFIX = "Bearer ";
 
     /**
-     * JWT ID
-     */
-    public static final  String JWT_ID = "jwt";
-
-    /**
      * JWT - 加密密匙
      */
     public static final String JWT_SECRET = "walker";

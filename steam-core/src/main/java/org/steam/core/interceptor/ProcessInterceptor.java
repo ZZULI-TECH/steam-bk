@@ -8,8 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * @Author: mingshan
- * @Date: Created in 21:45 2018/5/2
+ * @author mingshan
  */
 @Component
 public class ProcessInterceptor implements HandlerInterceptor {
@@ -29,8 +28,6 @@ public class ProcessInterceptor implements HandlerInterceptor {
             httpServletResponse.setStatus(200);
             return false;
         }
-
-        System.out.println(method);
 
         return true;
     }
