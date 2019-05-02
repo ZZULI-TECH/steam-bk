@@ -1,6 +1,8 @@
 package org.steam.core.web;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -8,47 +10,49 @@ import org.steam.common.model.ResultModel;
 import org.steam.core.model.entity.User;
 import org.steam.core.service.UserService;
 
+import javax.validation.Valid;
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @author mingshan
  */
+@Api(value = "user")
 @RestController
 @RequestMapping("/api/user")
-@Slf4j
 public class UserController {
 
-    private UserService userService;
     @Autowired
-    public UserController(UserService userService){
-        this.userService=userService;
-    }
-    @GetMapping("/getUserInfo/{uid}")
-    public ResultModel<User> getUserInfo(@PathVariable Integer uid){
-        return new ResultModel<>(200,"success",userService.getById(uid));
+    private UserService userService;
+
+    @ApiOperation(value="通过id获取用户信息", httpMethod="GET")
+    @GetMapping("/{id}")
+    public ResultModel<User> getUserInfo(@PathVariable Integer id){
+        return ResultModel.ok(userService.getById(id));
     }
 
-    @GetMapping("/getUserInfoByName/{name}")
-    public ResultModel<User> getUserInfoByName(@PathVariable String name){
+    @ApiOperation(value="通过用户名获取用户信息", httpMethod="GET")
+    @GetMapping("/getByName")
+    public ResultModel<User> getUserInfoByName(@RequestParam("name") String name) {
         User user = userService.getOne(new QueryWrapper<User>().eq("name",name));
-        return new ResultModel<>(200,"success",user);
+        return ResultModel.ok(user);
     }
 
-    @PostMapping("/addUser")
-    public ResultModel<User> addUser(User user){
-        userService.save(user);
-        return new ResultModel<>(200,"success");
-    }
-
-    @PostMapping("/updateById")
-    public ResultModel<User> updateById(User user){
+    @ApiOperation(value="更新用户信息", httpMethod="PUT")
+    @PutMapping
+    public ResultModel<User> updateById(@RequestBody @Valid User user){
         userService.updateById(user);
-        return new ResultModel<>(200,"success",null);
+        return ResultModel.ok();
     }
 
-    @PostMapping("/delete/{uid}")
-    public ResultModel<User> delete(@PathVariable Integer uid){
-        userService.removeById(uid);
-        return new ResultModel<>(200,"success",null);
+    @ApiOperation(value="删除", httpMethod="DELETE")
+    @DeleteMapping("/{id}")
+    public ResultModel<User> delete(@PathVariable Integer id, @RequestParam("version") Long version){
+        Map<String, Object> map = new HashMap<>();
+        map.put("id", id);
+        map.put("version", version);
+        userService.removeByMap(map);
+        return ResultModel.ok();
     }
-
 
 }

@@ -30,7 +30,7 @@ public class Constants {
     /**
      * 成功响应
      */
-    public static final String RESPONSE_OK = "OK";
+    public static final String RESPONSE_SUCCESS = "success";
 
     // --------- JWT ---------------
 

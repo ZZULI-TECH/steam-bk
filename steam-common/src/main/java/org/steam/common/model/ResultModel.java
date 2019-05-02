@@ -33,10 +33,17 @@ public class ResultModel<T> implements Serializable {
         this.content = content;
     }
 
+    public static <T> ResultModel<T> ok() {
+        return ResultModel.<T>builder()
+                .code(0L)
+                .message(Constants.RESPONSE_SUCCESS)
+                .build();
+    }
+
     public static <T> ResultModel<T> ok(T content) {
         return ResultModel.<T>builder()
                 .code(0L)
-                .message(Constants.RESPONSE_OK)
+                .message(Constants.RESPONSE_SUCCESS)
                 .content(content)
                 .build();
     }
