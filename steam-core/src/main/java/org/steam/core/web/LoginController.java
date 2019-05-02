@@ -20,6 +20,8 @@ import org.steam.core.model.entity.User;
 import org.steam.core.model.vo.TokenVO;
 import org.steam.core.service.LoginService;
 
+import java.util.Map;
+
 /**
  * The API of token for login and logout.
  *
@@ -69,6 +71,16 @@ public class LoginController {
     })
     public ResponseEntity<ResultModel> logout(@RequestBody @CurrentUser User user) {
         loginService.logout(user);
+        ResultModel<Token> model = ResultModel.<Token>builder()
+                .code(1002L)
+                .message(Constants.RESPONSE_OK)
+                .build();
+        return new ResponseEntity<>(model, HttpStatus.OK);
+    }
+
+    @GetMapping("test")
+    public ResponseEntity<ResultModel> test(TokenVO query) {
+        System.out.print(query.getEmail());
         ResultModel<Token> model = ResultModel.<Token>builder()
                 .code(1002L)
                 .message(Constants.RESPONSE_OK)
