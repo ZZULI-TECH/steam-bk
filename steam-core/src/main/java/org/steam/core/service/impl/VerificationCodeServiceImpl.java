@@ -39,7 +39,7 @@ public class VerificationCodeServiceImpl implements VerificationCodeService {
         }
 
         String code = generateVerifyCode(4, CHARS);
-        mailService.sendHtmlMail(email, REGISTER_SUBJECT, "您的验证码为: " +code + "，5分钟内有效");
+        mailService.sendHtmlMail(email, REGISTER_SUBJECT, "您的验证码为: " + code + "，5分钟内有效");
         // 存入redis
         redisCache.setEx(CODE_PREFIX + email, code, 5, TimeUnit.MINUTES);
     }
@@ -69,9 +69,5 @@ public class VerificationCodeServiceImpl implements VerificationCodeService {
             verifyCode.append(sources[RANDOM.nextInt(codesLen)]);
         }
         return verifyCode.toString();
-    }
-
-    public static void main(String[] args) {
-        System.out.println(generateVerifyCode(4, CHARS));
     }
 }

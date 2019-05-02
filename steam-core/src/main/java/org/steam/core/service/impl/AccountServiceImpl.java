@@ -66,6 +66,7 @@ public class AccountServiceImpl implements AccountService {
         verificationCodeService.verfiySecCode(user.getEmail(), seccode);
         String newPassword = MD5Util.md5(user.getPassword(), user.getEmail());
         user.setPassword(newPassword);
+        user.setVersion(0L);
         userService.save(user);
     }
 }
