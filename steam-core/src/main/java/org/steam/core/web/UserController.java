@@ -71,7 +71,7 @@ public class UserController {
         page.setPages(pageNum);
         QueryWrapper<User> wrapper = new QueryWrapper<>();
         if (!StringUtils.isEmpty(user.getName())) {
-            wrapper.eq("user", user.getName());
+            wrapper.eq("name", user.getName());
         }
         if (!StringUtils.isEmpty(user.getSex())) {
             wrapper.eq("sex", user.getSex());
