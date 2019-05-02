@@ -17,7 +17,7 @@ public class User extends VersionEntity {
     /**
      * 姓名
      */
-    private String username;
+    private String name;
 
     /**
      * 年龄

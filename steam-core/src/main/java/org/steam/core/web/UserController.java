@@ -30,7 +30,7 @@ public class UserController {
 
     @ApiOperation(value="通过id获取用户信息", httpMethod="GET")
     @GetMapping("/{id}")
-    public ResultModel<User> getUserInfo(@PathVariable Integer id){
+    public ResultModel<User> getUserInfo(@PathVariable Long id){
         return ResultModel.ok(userService.getById(id));
     }
 
@@ -50,7 +50,7 @@ public class UserController {
 
     @ApiOperation(value="删除", httpMethod="DELETE")
     @DeleteMapping("/{id}")
-    public ResultModel<User> delete(@PathVariable Integer id, @RequestParam("version") Long version){
+    public ResultModel<User> delete(@PathVariable Long id, @RequestParam("version") Long version){
         Map<String, Object> map = new HashMap<>();
         map.put("id", id);
         map.put("version", version);
