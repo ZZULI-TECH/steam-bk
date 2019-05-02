@@ -2,7 +2,6 @@ package org.steam.core.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
-import org.steam.common.exception.ServiceException;
 import org.steam.core.model.entity.User;
 import org.steam.core.repository.UserMapper;
 import org.steam.core.service.UserService;

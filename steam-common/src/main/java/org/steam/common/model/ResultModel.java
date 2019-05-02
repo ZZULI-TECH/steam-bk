@@ -3,6 +3,7 @@ package org.steam.common.model;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.steam.common.constant.Constants;
 
 import java.io.Serializable;
 
@@ -21,8 +22,6 @@ public class ResultModel<T> implements Serializable {
     private String message;
     private T content;
 
-    public ResultModel() {}
-
     public ResultModel(long code, String message) {
         this.code = code;
         this.message = message;
@@ -32,5 +31,20 @@ public class ResultModel<T> implements Serializable {
         this.code = code;
         this.message = message;
         this.content = content;
+    }
+
+    public static <T> ResultModel<T> ok(T content) {
+        return ResultModel.<T>builder()
+                .code(0L)
+                .message(Constants.RESPONSE_OK)
+                .content(content)
+                .build();
+    }
+
+    public static <T> ResultModel<T> fail(long code, String message) {
+        return ResultModel.<T>builder()
+                .code(code)
+                .message(message)
+                .build();
     }
 }

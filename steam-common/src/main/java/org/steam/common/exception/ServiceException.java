@@ -1,30 +1,28 @@
 package org.steam.common.exception;
 
-import org.springframework.http.HttpStatus;
-import org.steam.common.model.ResultModel;
-
 /**
  * 服务异常
  *
  * @author mingshan
  */
-public class ServiceException extends RuntimeException {
+public class ServiceException extends Exception {
     private static final long serialVersionUID = -8183259784734482522L;
-    private ResultModel result;
-    private HttpStatus httpStatus;
+    private long code;
+    private String message;
 
     public ServiceException() { }
 
-    public ServiceException(ResultModel result, HttpStatus httpStatus) {
-        this.result = result;
-        this.httpStatus = httpStatus;
+    public ServiceException(long code, String message) {
+        this.code = code;
+        this.message = message;
     }
 
-    public ResultModel getResult() {
-        return this.result;
+    @Override
+    public String getMessage() {
+        return this.message;
     }
 
-    public HttpStatus getHttpStatus() {
-        return this.httpStatus;
+    public long getCode() {
+        return this.code;
     }
 }

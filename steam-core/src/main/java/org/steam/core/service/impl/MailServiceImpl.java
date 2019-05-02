@@ -2,6 +2,7 @@ package org.steam.core.service.impl;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.steam.common.exception.ServiceException;
 import org.steam.core.service.MailService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,7 @@ public class MailServiceImpl implements MailService {
     private String from;
 
     @Override
-    public void sendSimpleMail(String to, String subject, String content) {
+    public void sendSimpleMail(String to, String subject, String content) throws ServiceException {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom(from);
         message.setTo(to);
@@ -39,13 +40,13 @@ public class MailServiceImpl implements MailService {
             mailSender.send(message);
             log.info("邮件发送成功！");
         } catch (Exception e) {
-            e.printStackTrace();
-            log.info("邮件发送失败" );
+            log.info("邮件发送失败，原因: ", e.getCause());
+            throw new ServiceException(1101L, "邮件发送失败");
         }
     }
 
     @Override
-    public void sendHtmlMail(String to, String subject, String content) {
+    public void sendHtmlMail(String to, String subject, String content) throws ServiceException {
         MimeMessage message = mailSender.createMimeMessage();
 
         try {
@@ -58,15 +59,14 @@ public class MailServiceImpl implements MailService {
             mailSender.send(message);
             log.info("html邮件发送成功");
         } catch (MessagingException e) {
-            e.printStackTrace();
-            log.info("html邮件发送失败" );
-
+            log.info("html邮件发送失败，原因: ", e.getCause());
+            throw new ServiceException(1102L, "html邮件发送失败");
         }
 
     }
 
     @Override
-    public void sendAttachmentsMail(String to, String subject, String content, String filePath) {
+    public void sendAttachmentsMail(String to, String subject, String content, String filePath) throws ServiceException {
         MimeMessage message = mailSender.createMimeMessage();
 
         try {
@@ -83,12 +83,13 @@ public class MailServiceImpl implements MailService {
             mailSender.send(message);
             log.info("带附件的邮件已经发送。");
         } catch (MessagingException e) {
-            log.error("发送带附件的邮件时发生异常！", e);
+            log.error("发送带附件的邮件时发生异常, 原因：", e.getCause());
+            throw new ServiceException(1103L, "发送带附件的邮件失败");
         }
     }
 
     @Override
-    public void sendInlineResourceMail(String to, String subject, String content, String rscPath, String rscId) {
+    public void sendInlineResourceMail(String to, String subject, String content, String rscPath, String rscId) throws ServiceException {
         MimeMessage message = mailSender.createMimeMessage();
 
         try {
@@ -104,7 +105,8 @@ public class MailServiceImpl implements MailService {
             mailSender.send(message);
             log.info("嵌入静态资源的邮件已经发送。");
         } catch (MessagingException e) {
-            log.error("发送嵌入静态资源的邮件时发生异常！", e);
+            log.error("发送嵌入静态资源的邮件时发生异常，原因：", e.getCause());
+            throw new ServiceException(1104L, "发送嵌入静态资源的邮件失败");
         }
     }
 }

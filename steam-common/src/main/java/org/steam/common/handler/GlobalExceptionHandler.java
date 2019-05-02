@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.steam.common.exception.ParameterException;
+import org.steam.common.exception.ServerException;
 import org.steam.common.exception.ServiceException;
 import org.steam.common.model.ResultModel;
 
@@ -26,7 +27,7 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(ServiceException.class)
-    public ResponseEntity<ResultModel> handleServiceException(ServiceException ex) {
+    public ResponseEntity<ResultModel> handleServiceException(ServerException ex) {
         return new ResponseEntity<ResultModel>(ex.getResult(), ex.getHttpStatus());
     }
 }

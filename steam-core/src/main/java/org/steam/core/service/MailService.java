@@ -1,5 +1,7 @@
 package org.steam.core.service;
 
+import org.steam.common.exception.ServiceException;
+
 /**
  * 邮件服务
  *
@@ -13,7 +15,7 @@ public interface MailService {
      * @param subject
      * @param content
      */
-    public void sendSimpleMail(String to, String subject, String content);
+    public void sendSimpleMail(String to, String subject, String content) throws ServiceException;
 
     /**
      * 发送html邮件
@@ -22,7 +24,7 @@ public interface MailService {
      * @param subject
      * @param content
      */
-    public void sendHtmlMail(String to, String subject, String content);
+    public void sendHtmlMail(String to, String subject, String content) throws ServiceException;
 
     /**
      * 发送带附件的邮件
@@ -32,7 +34,7 @@ public interface MailService {
      * @param content
      * @param filePath
      */
-    public void sendAttachmentsMail(String to, String subject, String content, String filePath);
+    public void sendAttachmentsMail(String to, String subject, String content, String filePath) throws ServiceException;
 
     /**
      * 发送带静态资源的邮件
@@ -43,5 +45,5 @@ public interface MailService {
      * @param rscPath
      * @param rscId
      */
-    public void sendInlineResourceMail(String to, String subject, String content, String rscPath, String rscId);
+    public void sendInlineResourceMail(String to, String subject, String content, String rscPath, String rscId) throws ServiceException;
 }

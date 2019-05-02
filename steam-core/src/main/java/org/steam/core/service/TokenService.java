@@ -16,7 +16,7 @@ public interface TokenService {
      * @param userId
      * @return The model of Token.
      */
-    Token creatToken(long userId) throws ServiceException;
+    Token creatToken(long userId);
 
     /**
      * Deteles the token of authorization.

@@ -7,33 +7,36 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.steam.common.exception.ParameterException;
+import org.steam.common.exception.ServerException;
 import org.steam.common.exception.ServiceException;
 import org.steam.common.model.ResultModel;
 import org.steam.common.util.MD5Util;
-import org.steam.core.model.dto.LoginDTO;
 import org.steam.core.model.entity.Token;
 import org.steam.core.model.entity.User;
-import org.steam.core.service.LoginService;
+import org.steam.core.service.AccountService;
 import org.steam.core.service.TokenService;
 import org.steam.core.service.UserService;
+import org.steam.core.service.VerificationCodeService;
+
+import java.util.Objects;
 
 /**
  * @author mingshan
  */
 @Slf4j
 @Service
-public class LoginServiceImpl implements LoginService {
+public class AccountServiceImpl implements AccountService {
     @Autowired
     private UserService userService;
 
     @Autowired
     private TokenService tokenService;
 
-    @Override
-    public Token login(LoginDTO login) {
-        String email = login.getEmail();
-        String password = login.getPassword();
+    @Autowired
+    private VerificationCodeService verificationCodeService;
 
+    @Override
+    public Token login(String email, String password) {
         if (StringUtils.isEmpty(email) || StringUtils.isEmpty(password)) {
             throw new ParameterException("UserName or password is empty.");
         }
@@ -48,7 +51,7 @@ public class LoginServiceImpl implements LoginService {
                     .build();
 
             log.info("UserName or password is incorrect.");
-            throw new ServiceException(result, HttpStatus.OK);
+            throw new ServerException(result, HttpStatus.OK);
         }
 
         Token token = tokenService.creatToken(user.getId());
@@ -58,5 +61,17 @@ public class LoginServiceImpl implements LoginService {
     @Override
     public void logout(User user) {
         tokenService.deleteToken(user.getId());
+    }
+
+    @Override
+    public void register(User user, String seccode) throws ServiceException {
+        if (StringUtils.isEmpty(user.getEmail())) {
+            throw new ParameterException("Email is empty.");
+        }
+
+        verificationCodeService.verfiySecCode(user.getEmail(), seccode);
+        String newPassword = MD5Util.md5(user.getPassword(), user.getEmail());
+        user.setPassword(newPassword);
+        userService.save(user);
     }
 }

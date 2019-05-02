@@ -26,7 +26,7 @@ public class TokenServiceImpl implements TokenService {
     private RedisCache redisCache;
 
     @Override
-    public Token creatToken(long userId) throws ServiceException {
+    public Token creatToken(long userId) {
         User user = new User();
         user.setId(userId);
         String subject = JWTUtil.generalSubject(user);
