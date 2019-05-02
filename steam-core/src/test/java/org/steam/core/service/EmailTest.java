@@ -17,7 +17,6 @@ public class EmailTest {
     @Autowired
     private MailService mailService;
 
-    @Test
     public void testSendEmail() {
         try {
             mailService.sendHtmlMail("499445428@qq.com", "Steam邮箱验证", "您的验证码为: 2345，5分钟内有效");
