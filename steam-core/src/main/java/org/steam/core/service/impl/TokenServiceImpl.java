@@ -33,7 +33,7 @@ public class TokenServiceImpl implements TokenService {
         Token model = new Token(userId, Constants.TOKEN_PREFIX + token);
 
         log.info("Create token, userId: {}", userId);
-        redisCache.setEx(String.valueOf(userId), token, Constants.TOKEN_EXPIRES_HOUR * 3600, TimeUnit.MINUTES);
+        redisCache.setEx(String.valueOf(userId), token, Constants.TOKEN_EXPIRES_HOUR, TimeUnit.HOURS);
         return model;
     }
 
