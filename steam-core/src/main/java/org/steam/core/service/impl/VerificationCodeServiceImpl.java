@@ -70,4 +70,8 @@ public class VerificationCodeServiceImpl implements VerificationCodeService {
         }
         return verifyCode.toString();
     }
+
+    public static void main(String[] args) {
+        System.out.println(generateVerifyCode(4, CHARS));
+    }
 }

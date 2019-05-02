@@ -31,7 +31,7 @@ public class TokenServiceImpl implements TokenService {
         user.setId(userId);
         String subject = JWTUtil.generalSubject(user);
         String token = JWTUtil.createJWT(userId, subject, Constants.JWT_TTL);
-        Token model = new Token(userId, token);
+        Token model = new Token(userId, Constants.TOKEN_PREFIX + token);
 
         log.info("Create token, userId: {}", userId);
         redisCache.setEx(String.valueOf(userId), token, Constants.TOKEN_EXPIRES_HOUR * 3600, TimeUnit.MINUTES);
