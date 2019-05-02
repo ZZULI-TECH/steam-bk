@@ -24,7 +24,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper,User> implements Use
         }
 
         VersionUtil.checkVersion(version, user);
-        user.setDeleted(1);
-        this.baseMapper.updateById(user);
+        this.baseMapper.deleteById(id);
     }
 }
