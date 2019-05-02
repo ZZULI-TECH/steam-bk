@@ -13,7 +13,7 @@ import lombok.ToString;
 public class RegisterVO {
     private Integer age;
     private String sex;
-    private String userName;
+    private String name;
     private String email;
     private String password;
     private String address;
