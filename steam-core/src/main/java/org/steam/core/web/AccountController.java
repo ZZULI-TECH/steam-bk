@@ -104,7 +104,7 @@ public class AccountController {
     }
 
     @RequestMapping(value = "/getSeccode", method = RequestMethod.GET)
-    @ApiOperation(value="Register", httpMethod="GET", notes="获取验证码")
+    @ApiOperation(value="获取验证码", httpMethod="GET", notes="获取验证码")
     public ResponseEntity<ResultModel> getSeccode(@RequestParam("email") String email) {
         ResultModel model;
         try {
