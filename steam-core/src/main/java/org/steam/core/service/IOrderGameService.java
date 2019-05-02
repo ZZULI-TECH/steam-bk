@@ -1,6 +1,6 @@
 package org.steam.core.service;
 
-import org.steam.core.model.entity.OrderGood;
+import org.steam.core.model.entity.OrderGame;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -9,8 +9,8 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * </p>
  *
  * @author biao
- * @since 2019-04-28
+ * @since 2019-05-02
  */
-public interface IOrderGoodService extends IService<OrderGood> {
+public interface IOrderGameService extends IService<OrderGame> {
 
 }

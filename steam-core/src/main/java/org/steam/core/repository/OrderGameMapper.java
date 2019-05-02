@@ -1,6 +1,6 @@
 package org.steam.core.repository;
 
-import org.steam.core.model.entity.OrderGood;
+import org.steam.core.model.entity.OrderGame;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
@@ -9,8 +9,8 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * </p>
  *
  * @author biao
- * @since 2019-04-28
+ * @since 2019-05-02
  */
-public interface OrderGoodMapper extends BaseMapper<OrderGood> {
+public interface OrderGameMapper extends BaseMapper<OrderGame> {
 
 }

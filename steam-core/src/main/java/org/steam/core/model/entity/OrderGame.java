@@ -17,13 +17,13 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author biao
- * @since 2019-04-28
+ * @since 2019-05-02
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Accessors(chain = true)
-@TableName("t_order_good")
-public class OrderGood extends VersionEntity {
+@TableName("t_order_game")
+public class OrderGame extends VersionEntity {
 
     private static final long serialVersionUID = 1L;
 
@@ -61,7 +61,6 @@ public class OrderGood extends VersionEntity {
      * 游戏封面
      */
     private String gameCover;
-
 
 
 }

@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RestController;
  * </p>
  *
  * @author biao
- * @since 2019-04-28
+ * @since 2019-05-02
  */
 @RestController
-@RequestMapping("/order-good")
-public class OrderGoodController {
+@RequestMapping("/order-game")
+public class OrderGameController {
 
 }
