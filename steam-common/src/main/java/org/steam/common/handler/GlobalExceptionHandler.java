@@ -26,8 +26,8 @@ public class GlobalExceptionHandler {
         return ex.getMessage();
     }
 
-    @ExceptionHandler(ServiceException.class)
+    @ExceptionHandler(ServerException.class)
     public ResponseEntity<ResultModel> handleServiceException(ServerException ex) {
-        return new ResponseEntity<ResultModel>(ex.getResult(), ex.getHttpStatus());
+        return new ResponseEntity<>(ex.getResult(), ex.getHttpStatus());
     }
 }
