@@ -1,5 +1,6 @@
 package org.steam.common.model;
 
+import com.baomidou.mybatisplus.annotation.TableLogic;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -22,4 +23,7 @@ public class Entity implements Serializable {
     private LocalDateTime gmtCreate;
     // 修改时间
     private LocalDateTime gmtModified;
+    // 逻辑删除 (0：逻辑未删除  1：逻辑已删除)
+    @TableLogic
+    private Integer deleted;
 }
