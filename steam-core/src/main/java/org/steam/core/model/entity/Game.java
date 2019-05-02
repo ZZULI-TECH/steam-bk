@@ -79,9 +79,9 @@ public class Game extends VersionEntity {
     private String content;
 
     /**
-     * 是否在售
+     * 是否在售，（上架/下架）0：已下架  1：已上架
      */
-    private String isOnsale;
+    private String onSale;
 
 
 
