@@ -69,8 +69,8 @@ public class UserController {
      * @author lyf
      */
     @ApiOperation(value="查询所有，带分页", httpMethod="GET")
-    @PostMapping("/list")
-    public ResultModel<IPage> selectList(Integer pageSize, Integer pageNum, @RequestBody User user){
+    @GetMapping("/list")
+    public ResultModel<IPage> selectList(Integer pageSize, Integer pageNum, User user){
         Page<User> page = new Page<>();
         page.setSize(pageSize);
         page.setPages(pageNum);
@@ -90,13 +90,13 @@ public class UserController {
 
     /**
      *
-     * @param auth
+     * @param token
      * @return
      */
-    @ApiOperation(value="获取token", httpMethod="GET")
+    @ApiOperation(value="根据token获取用户信息", httpMethod="GET")
     @GetMapping("/getInfo")
-    public ResultModel<User> selectList(@RequestParam String auth){
-      User user = TokenUtil.getUserFromToken(auth);
+    public ResultModel<User> selectList(@RequestParam String token){
+      User user = TokenUtil.getUserFromToken(token);
       user.setPassword("");
       return ResultModel.ok(user);
     }
