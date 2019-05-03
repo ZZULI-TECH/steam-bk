@@ -18,8 +18,6 @@ import org.steam.core.service.UserService;
 import org.steam.core.util.TokenUtil;
 
 import javax.validation.Valid;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * @author mingshan

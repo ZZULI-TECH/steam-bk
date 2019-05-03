@@ -1,5 +1,6 @@
 package org.steam.core.repository;
 
+import org.mapstruct.Mapper;
 import org.steam.core.model.entity.Game;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
@@ -11,6 +12,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @author biao
  * @since 2019-04-28
  */
+@Mapper
 public interface GameMapper extends BaseMapper<Game> {
 
     Game select(Long id);

@@ -50,6 +50,11 @@ public class Cart extends VersionEntity {
     private Integer gameNum;
 
     /**
+     * 游戏图片
+     */
+    private String gameImage;
+
+    /**
      * 是否选中
      */
     private Boolean selected;
