@@ -21,8 +21,6 @@ public class VerificationCodeServiceImpl implements VerificationCodeService {
             'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
             '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'
     };
-    /** 并发随机数生成器 */
-    private static final ThreadLocalRandom RANDOM = ThreadLocalRandom.current();
     private static final String REGISTER_SUBJECT = "Steam邮箱验证";
     private static final String CODE_PREFIX = "secode";
 
@@ -38,7 +36,7 @@ public class VerificationCodeServiceImpl implements VerificationCodeService {
             throw new ParameterException("Email is empty.");
         }
 
-        String code = generateVerifyCode(4, CHARS);
+        String code = generateVerifyCode(4);
         mailService.sendHtmlMail(email, REGISTER_SUBJECT, "您的验证码为: " + code + "，5分钟内有效");
         // 存入redis
         redisCache.setEx(CODE_PREFIX + email, code, 5, TimeUnit.MINUTES);
@@ -56,17 +54,15 @@ public class VerificationCodeServiceImpl implements VerificationCodeService {
      * 使用指定源生成验证码
      *
      * @param verifySize 验证码长度
-     * @param sources 验证码字符源，char数组
      * @return 生成的验证码
      */
-    private static String generateVerifyCode(int verifySize, char[] sources) {
-        if (sources == null || sources.length == 0) {
-            sources = CHARS;
-        }
+    private static String generateVerifyCode(int verifySize) {
+        final ThreadLocalRandom random = ThreadLocalRandom.current();
+        final char[] sources = CHARS;
         int codesLen = sources.length;
         StringBuilder verifyCode = new StringBuilder(verifySize);
         for (int i = 0; i < verifySize; i++) {
-            verifyCode.append(sources[RANDOM.nextInt(codesLen)]);
+            verifyCode.append(sources[random.nextInt(codesLen)]);
         }
         return verifyCode.toString();
     }
