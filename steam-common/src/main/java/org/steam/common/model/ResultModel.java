@@ -22,17 +22,6 @@ public class ResultModel<T> implements Serializable {
     private String message;
     private T content;
 
-    public ResultModel(long code, String message) {
-        this.code = code;
-        this.message = message;
-    }
-
-    public ResultModel(long code, String message, T content) {
-        this.code = code;
-        this.message = message;
-        this.content = content;
-    }
-
     public static <T> ResultModel<T> ok() {
         return ok(null);
     }
