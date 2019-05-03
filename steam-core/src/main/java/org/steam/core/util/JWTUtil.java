@@ -88,6 +88,8 @@ public class JWTUtil {
     public static String generalSubject(User user){
         JSONObject jo = new JSONObject();
         jo.put("id", user.getId());
+        jo.put("name", user.getName());
+        jo.put("email", user.getEmail());
         return jo.toJSONString();
     }
 }
