@@ -1,5 +1,6 @@
 package org.steam.core.model.entity;
 
+import org.steam.common.model.Entity;
 import org.steam.common.model.VersionEntity;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
@@ -10,7 +11,7 @@ import lombok.experimental.Accessors;
 @EqualsAndHashCode(callSuper = true)
 @Accessors(chain = true)
 @TableName("t_game_comment")
-public class GameComment extends VersionEntity {
+public class GameComment extends Entity {
 
     private static final long serialVersionUID = 1L;
 

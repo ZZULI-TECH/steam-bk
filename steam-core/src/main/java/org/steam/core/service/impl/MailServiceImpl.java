@@ -38,9 +38,9 @@ public class MailServiceImpl implements MailService {
         message.setText(content);
         try {
             mailSender.send(message);
-            log.info("邮件发送成功！");
+            log.info("邮件发送: {}成功！", to);
         } catch (Exception e) {
-            log.info("邮件发送失败，原因: ", e.getCause());
+            log.info("邮件发送: {}失败，原因: ", to, e.getCause());
             throw new ServiceException(1101L, "邮件发送失败");
         }
     }
@@ -57,9 +57,9 @@ public class MailServiceImpl implements MailService {
             helper.setSubject(subject);
             helper.setText(content, true);
             mailSender.send(message);
-            log.info("html邮件发送成功");
+            log.info("html邮件发送: {}成功", to);
         } catch (MessagingException e) {
-            log.info("html邮件发送失败，原因: ", e.getCause());
+            log.info("html邮件发送: {}失败，原因: ", to, e.getCause());
             throw new ServiceException(1102L, "html邮件发送失败");
         }
 
@@ -81,9 +81,9 @@ public class MailServiceImpl implements MailService {
             helper.addAttachment(fileName, file);
 
             mailSender.send(message);
-            log.info("带附件的邮件已经发送。");
+            log.info("带附件的邮件发送: {}", to);
         } catch (MessagingException e) {
-            log.error("发送带附件的邮件时发生异常, 原因：", e.getCause());
+            log.error("带附件的邮件时发送：{}失败, 原因：", to, e.getCause());
             throw new ServiceException(1103L, "发送带附件的邮件失败");
         }
     }
@@ -103,9 +103,9 @@ public class MailServiceImpl implements MailService {
             helper.addInline(rscId, res);
 
             mailSender.send(message);
-            log.info("嵌入静态资源的邮件已经发送。");
+            log.info("嵌入静态资源的邮件发送: {}成功", to);
         } catch (MessagingException e) {
-            log.error("发送嵌入静态资源的邮件时发生异常，原因：", e.getCause());
+            log.error("嵌入静态资源的邮件发送：{}失败，原因：", to, e.getCause());
             throw new ServiceException(1104L, "发送嵌入静态资源的邮件失败");
         }
     }
