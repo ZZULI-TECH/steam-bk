@@ -71,8 +71,8 @@ public class UserController {
      * @author lyf
      */
     @ApiOperation(value="查询所有，带分页", httpMethod="GET")
-    @GetMapping("/list")
-    public ResultModel<IPage> selectList(Integer pageSize, Integer pageNum, User user){
+    @PostMapping("/list")
+    public ResultModel<IPage> selectList(Integer pageSize, Integer pageNum, @RequestBody User user){
         Page<User> page = new Page<>();
         page.setSize(pageSize);
         page.setPages(pageNum);

@@ -36,7 +36,7 @@ public class Game extends VersionEntity {
     /**
      * 1 数字游戏 2实体游戏
      */
-    private Boolean type;
+    private String type;
 
     /**
      * 有英文名称用英文名称，无英文用拼音，方便字母检索
@@ -81,8 +81,6 @@ public class Game extends VersionEntity {
     /**
      * 是否在售，（上架/下架）0：已下架  1：已上架
      */
-    private String onSale;
-
-
+    private Boolean onSale;
 
 }
