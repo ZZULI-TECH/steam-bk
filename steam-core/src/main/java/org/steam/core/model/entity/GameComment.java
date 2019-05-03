@@ -15,7 +15,7 @@ public class GameComment extends Entity {
 
     private static final long serialVersionUID = 1L;
 
-    private Long userId;
+    private Long uid;
 
     private Long gameId;
 

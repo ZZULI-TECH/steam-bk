@@ -21,10 +21,17 @@
 
     <collection property="comments" ofType="org.steam.core.model.entity.GameComment">
       <id column="c_id" property="id"/>
-      <result column="user_id" property="userId"/>
+      <result column="c_uid" property="uid"/>
       <result column="c_content" property="content"/>
       <result column="c_gmt_create" property="gmtCreate"/>
       <result column="c_gmt_modified" property="gmtModified"/>
+    </collection>
+
+    <collection property="images" ofType="org.steam.core.model.entity.GameImage">
+      <id column="i_id" property="id"/>
+      <result column="i_image_url" property="imageUrl"/>
+      <result column="i_gmt_create" property="gmtCreate"/>
+      <result column="i_gmt_modified" property="gmtModified"/>
     </collection>
   </resultMap>
 
@@ -46,12 +53,17 @@
            g.gmt_create,
            g.gmt_modified,
            gc.id as c_id,
-           gc.user_id,
+           gc.uid as c_uid,
            gc.content as c_content,
            gc.gmt_create as c_gmt_create,
            gc.gmt_modified as c_gmt_modified,
+           gi.id as i_id,
+           gi.image_url as i_image_url,
+           gi.gmt_create as i_gmt_create,
+           gi.gmt_modified as i_gmt_modified,
     from t_game g
     left join t_game_comment gc on gc.game_id = g.id
+    left join t_game_image gi on gi.game_id = g.id
     where g.id = #{id}
   </select>
 </mapper>
