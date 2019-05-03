@@ -67,6 +67,11 @@ public class GameVO extends VersionEntity {
     private String content;
 
     /**
+     * 下载链接
+     */
+    private String downloadUrl;
+
+    /**
      * 是否在售，（上架/下架）0：已下架  1：已上架
      */
     private Boolean onSale;
