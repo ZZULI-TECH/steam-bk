@@ -4,6 +4,7 @@ package org.steam.core.web;
 import io.swagger.annotations.Api;
 import ma.glasnost.orika.MapperFacade;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -35,6 +36,10 @@ public class GameController {
         Game game = orikaMapperFacade.map(gameVO, Game.class);
         gameService.save(game);
 
+        return ResultModel.ok();
+    }
+
+    public ResultModel delete(@PathVariable("id") Long id) {
         return ResultModel.ok();
     }
 }

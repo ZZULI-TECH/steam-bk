@@ -2,7 +2,6 @@ package org.steam.core.model.entity;
 
 import org.steam.common.model.VersionEntity;
 import com.baomidou.mybatisplus.annotation.TableName;
-import java.time.LocalDateTime;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -20,10 +19,5 @@ public class GameComment extends VersionEntity {
     private Long gameId;
 
     private String content;
-
-    private LocalDateTime gmtCreate;
-
-    private LocalDateTime gmtModified;
-
 
 }
