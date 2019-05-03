@@ -6,6 +6,7 @@ import lombok.ToString;
 import org.steam.common.model.VersionEntity;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 /**
  * @author mingshan
@@ -75,4 +76,6 @@ public class GameVO extends VersionEntity {
      * 是否在售，（上架/下架）0：已下架  1：已上架
      */
     private Boolean onSale;
+
+    private List<GameCommentVO> comments;
 }

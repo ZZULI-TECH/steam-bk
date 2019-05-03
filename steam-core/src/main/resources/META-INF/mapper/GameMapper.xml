@@ -1,5 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.steam.core.repository.GameMapper">
+  <resultMap id="gameResultMap" type="org.steam.core.model.entity.Game">
+    <id column="id" property="id"/>
+    <result column="name" property="name"/>
+    <result column="type" property="type"/>
+    <result column="english_name" property="englishName"/>
+    <result column="click_count" property="clickCount"/>
+    <result column="sales" property="sales"/>
+    <result column="price" property="price"/>
+    <result column="cover" property="cover"/>
+    <result column="keywords" property="keywords"/>
+    <result column="remark" property="remark"/>
+    <result column="content" property="content"/>
+    <result column="download_url" property="downloadUrl"/>
+    <result column="deleted" property="deleted"/>
+    <result column="version" property="version"/>
+    <result column="gmt_create" property="gmtCreate"/>
+    <result column="gmt_modified" property="gmtModified"/>
 
+    <collection property="comments" ofType="org.steam.core.model.entity.GameComment">
+      <id column="c_id" property="id"/>
+      <result column="user_id" property="userId"/>
+      <result column="c_content" property="content"/>
+      <result column="c_gmt_create" property="gmtCreate"/>
+      <result column="c_gmt_modified" property="gmtModified"/>
+    </collection>
+  </resultMap>
+
+  <select id="select"  parameterType="java.lang.Long" resultMap="gameResultMap">
+    select g.id,
+           g.name,
+           g.type,
+           g.english_name,
+           g.click_count,
+           g.sales,
+           g.price,
+           g.cover,
+           g.keywords,
+           g.remark,
+           g.content,
+           g.download_url,
+           g.deleted,
+           g.version,
+           g.gmt_create,
+           g.gmt_modified,
+           gc.id as c_id,
+           gc.user_id,
+           gc.content as c_content,
+           gc.gmt_create as c_gmt_create,
+           gc.gmt_modified as c_gmt_modified,
+    from t_game g
+    left join t_game_comment gc on gc.game_id = g.id
+    where g.id = #{id}
+  </select>
 </mapper>

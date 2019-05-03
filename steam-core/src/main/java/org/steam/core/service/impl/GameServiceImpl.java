@@ -21,6 +21,11 @@ import org.steam.core.util.VersionUtil;
 public class GameServiceImpl extends ServiceImpl<GameMapper, Game> implements IGameService {
 
     @Override
+    public Game get(Long id) {
+        return this.baseMapper.select(id);
+    }
+
+    @Override
     public void putaway(Long id, Long version) throws ServiceException, VersionException {
         Game game = this.baseMapper.selectById(id);
         if (game == null) {

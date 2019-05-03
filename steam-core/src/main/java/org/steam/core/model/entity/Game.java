@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -88,4 +89,8 @@ public class Game extends VersionEntity {
      */
     private Boolean onSale;
 
+    /**
+     * 评论
+     */
+    private List<GameComment> comments;
 }

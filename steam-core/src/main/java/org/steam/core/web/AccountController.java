@@ -71,10 +71,6 @@ public class AccountController {
     @RequestMapping(value = "/logout", method = RequestMethod.DELETE)
     @Authorization
     @ApiOperation(value="Logout", httpMethod="DELETE", notes="Logout")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "authorization", value = "authorization", required = true, dataType = "String",
-                    paramType = "header")
-    })
     public ResponseEntity<ResultModel> logout(@RequestBody @CurrentUser User user) {
         accountService.logout(user);
 

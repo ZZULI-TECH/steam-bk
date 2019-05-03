@@ -13,4 +13,5 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface GameMapper extends BaseMapper<Game> {
 
+    Game select(Long id);
 }
