@@ -89,6 +89,15 @@ public class GameController {
         if (game.getOnSale() != null) {
             wrapper.eq("on_sale", game.getOnSale());
         }
+
+        if (!StringUtils.isEmpty(game.getKeywords())) {
+            wrapper.like("keywords", game.getKeywords());
+        }
+
+        if (!StringUtils.isEmpty(game.getType())) {
+            wrapper.like("type", game.getType());
+        }
+
         wrapper.orderByDesc("gmt_create");
 
         IPage<Game> games = gameService.page(page, wrapper);
