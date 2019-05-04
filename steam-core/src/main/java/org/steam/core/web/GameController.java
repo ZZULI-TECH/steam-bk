@@ -98,7 +98,7 @@ public class GameController {
             wrapper.like("type", game.getType());
         }
 
-        wrapper.orderByDesc("gmt_create");
+        wrapper.orderByDesc("gmt_modified");
 
         IPage<Game> games = gameService.page(page, wrapper);
         return ResultModel.ok(games);
