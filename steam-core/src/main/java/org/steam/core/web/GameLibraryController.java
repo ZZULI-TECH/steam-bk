@@ -1,6 +1,7 @@
 package org.steam.core.web;
 
 
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import ma.glasnost.orika.MapperFacade;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,7 @@ import java.util.List;
  * @author biao
  * @since 2019-04-28
  */
+@Api(value = "game-library")
 @RestController
 @RequestMapping("/game-library")
 public class GameLibraryController {

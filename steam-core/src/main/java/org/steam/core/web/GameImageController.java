@@ -36,8 +36,8 @@ public class GameImageController {
     private MapperFacade orikaMapperFacade;
 
     @ApiOperation(value="批量新增游戏图片", httpMethod="POST", notes="批量新增游戏图片")
-    @PostMapping
-    public ResultModel save(@RequestBody List<GameImageVO> images) {
+    @PostMapping("/batchSave")
+    public ResultModel batchSave(@RequestBody List<GameImageVO> images) {
         List<GameImage> gameImages = orikaMapperFacade.mapAsList(images, GameImage.class);
         gameImageService.saveBatch(gameImages);
         return ResultModel.ok();
