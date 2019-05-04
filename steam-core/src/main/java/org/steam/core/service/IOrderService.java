@@ -1,7 +1,10 @@
 package org.steam.core.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import org.steam.common.exception.ServiceException;
 import org.steam.core.model.entity.Order;
 import com.baomidou.mybatisplus.extension.service.IService;
+import org.steam.core.model.vo.OrderListVo;
 
 import java.util.List;
 
@@ -19,7 +22,7 @@ public interface IOrderService extends IService<Order> {
      * 购物车商品创建订单
      * @param uid 用户id
      */
-    void createOrderFromCart(Long uid);
+    void createOrderFromCart(Long uid) throws ServiceException;
 
     /**
      * 商品立即下单
@@ -27,19 +30,21 @@ public interface IOrderService extends IService<Order> {
      * @param gameId 游戏id
      * @param num 数量
      */
-    void createOrderQuickly(Long uid , Long gameId ,Integer num);
+    void createOrderQuickly(Long uid , Long gameId ,Integer num) throws ServiceException;
 
     /**
      * 取消订单
      * @param id 订单id
      * @param uid 用户id
      */
-    void cancelOrder(Long id , Long uid);
+    void cancelOrder(Long id , Long uid) throws ServiceException;
 
     /**
      * 订单列表
      * @param order 用户id ，订单状态
      */
-    List<Order> orderList(Integer pageNum, Integer pageSize, Order order);
+    Page<OrderListVo> orderList(Integer pageNum, Integer pageSize, Order order);
+
+    Order orderInfo(Long id);
 
 }

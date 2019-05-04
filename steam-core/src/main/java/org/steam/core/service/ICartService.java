@@ -60,4 +60,10 @@ public interface ICartService extends IService<Cart> {
      */
     CartListVo listMyCart(Long uid);
 
+    /**
+     * 清空购物车
+     * @param uid 用户id
+     */
+    void removeAll(Long uid);
+
 }

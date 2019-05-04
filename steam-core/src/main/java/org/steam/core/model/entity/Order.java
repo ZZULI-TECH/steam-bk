@@ -40,7 +40,7 @@ public class Order extends VersionEntity {
     /**
      * 订单状态
      */
-    private Boolean orderStatus;
+    private Integer orderStatus;
 
     /**
      * 收货人
@@ -86,6 +86,10 @@ public class Order extends VersionEntity {
      * 快递名称
      */
     private String shippingName;
+    /**
+     * 是否需要发货
+     */
+    private Boolean needShipping;
 
     /**
      * 支付号

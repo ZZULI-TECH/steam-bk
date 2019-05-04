@@ -125,6 +125,17 @@ public class CartServiceImpl extends ServiceImpl<CartMapper, Cart> implements IC
     }
 
     /**
+     * 清空购物车
+     * @param uid 用户id
+     */
+    @Override
+    public void removeAll(Long uid) {
+        Map<String,Object> userId=new HashMap<>();
+        userId.put("user_id",uid);
+        this.baseMapper.deleteByMap(userId);
+    }
+
+    /**
      * @author biao
      * @param cartList 购物车列表
      * @return BigDecimal购物车中选中的商品的价格

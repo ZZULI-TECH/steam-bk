@@ -57,7 +57,7 @@ public class Cart extends VersionEntity {
     /**
      * 游戏类型
      */
-    private String gameType;
+    private Integer gameType;
 
     /**
      * 是否选中
