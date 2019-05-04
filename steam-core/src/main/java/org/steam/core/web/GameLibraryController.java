@@ -27,7 +27,7 @@ import java.util.List;
  */
 @Api(value = "game-library")
 @RestController
-@RequestMapping("/game-library")
+@RequestMapping("/api/game-library")
 public class GameLibraryController {
     @Autowired
     private IGameLibraryService gameLibraryService;

@@ -26,7 +26,7 @@ import java.util.List;
  */
 @Api(value = "game-image")
 @RestController
-@RequestMapping("/game-image")
+@RequestMapping("/api/game-image")
 public class GameImageController {
 
     @Autowired

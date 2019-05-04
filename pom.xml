@@ -41,6 +41,7 @@
     <mybatis-plus.version>3.1.1</mybatis-plus.version>
     <freemarker.version>2.3.28</freemarker.version>
     <junit.version>4.12</junit.version>
+    <qiniu-java-sdk.version>[7.2.0, 7.2.99]</qiniu-java-sdk.version>
   </properties>
 
   <dependencies>
@@ -148,6 +149,12 @@
         <groupId>javax</groupId>
         <artifactId>javaee-api</artifactId>
         <version>${javaee-api.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.qiniu</groupId>
+        <artifactId>qiniu-java-sdk</artifactId>
+        <version>${qiniu-java-sdk.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
