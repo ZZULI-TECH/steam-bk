@@ -20,6 +20,7 @@ import org.steam.common.model.ResultModel;
 import org.steam.core.model.entity.Game;
 import org.steam.core.model.entity.User;
 import org.steam.core.model.vo.GameCommentVO;
+import org.steam.core.model.vo.GameImageVO;
 import org.steam.core.model.vo.GameVO;
 import org.steam.core.service.IGameService;
 
@@ -67,6 +68,11 @@ public class GameController {
         if (!CollectionUtils.isEmpty(game.getComments())) {
             List<GameCommentVO> commentVOS = orikaMapperFacade.mapAsList(game.getComments(), GameCommentVO.class);
             gameVO.setComments(commentVOS);
+        }
+        
+        if (CollectionUtils.isEmpty(game.getImages())) {
+            List<GameImageVO> imageVOS = orikaMapperFacade.mapAsList(game.getImages(), GameImageVO.class);
+            gameVO.setImages(imageVOS);
         }
 
         return ResultModel.ok(gameVO);

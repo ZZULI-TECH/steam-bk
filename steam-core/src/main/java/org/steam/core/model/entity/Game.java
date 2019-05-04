@@ -93,4 +93,9 @@ public class Game extends VersionEntity {
      * 评论
      */
     private List<GameComment> comments;
+
+    /**
+     * 图片
+     */
+    private List<GameImage> images;
 }
