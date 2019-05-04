@@ -89,6 +89,7 @@ public class GameController {
         if (game.getOnSale() != null) {
             wrapper.eq("on_sale", game.getOnSale());
         }
+        wrapper.orderByDesc("gmt_create");
 
         IPage<Game> games = gameService.page(page, wrapper);
         return ResultModel.ok(games);
