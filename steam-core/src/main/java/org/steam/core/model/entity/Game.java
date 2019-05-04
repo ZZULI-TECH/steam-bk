@@ -2,6 +2,7 @@ package org.steam.core.model.entity;
 
 import java.math.BigDecimal;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import org.steam.common.model.VersionEntity;
 import com.baomidou.mybatisplus.annotation.TableName;
 
@@ -85,12 +86,13 @@ public class Game extends VersionEntity {
     private String downloadUrl;
 
     /**
-     * 是否在售，（上架/下架）0：已下架  1：已上架
+     * 是否在售\
      */
     private Boolean onSale;
 
     /**
      * 评论
      */
+    @TableField(exist = false)
     private List<GameComment> comments;
 }

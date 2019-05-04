@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.steam.common.exception.ServiceException;
 import org.steam.core.model.entity.Cart;
 import org.steam.core.model.entity.Game;
 import org.steam.core.model.vo.CartListVo;
@@ -36,14 +37,27 @@ public class CartServiceImpl extends ServiceImpl<CartMapper, Cart> implements IC
      * @param cart 游戏id ，用户id
      */
     @Override
-    public void addToCart(Cart cart) {
-        Game game = gameService.getById(cart.getGameId());
-        cart.setGameName(game.getName())
-                .setGameNum(1)
-                .setGamePrice(game.getPrice())
-                .setSelected(true)
-                .setGameImage(game.getCover());
-        this.baseMapper.insert(cart);
+    public void addToCart(Cart cart) throws ServiceException {
+        Cart haveCart = this.baseMapper.selectOne(new QueryWrapper<Cart>().eq("game_id", cart.getGameId()));
+        if(haveCart==null){
+            //购物车尚未拥有
+            Game game = gameService.getById(cart.getGameId());
+            if(game.getOnSale()){
+                cart.setGameName(game.getName())
+                        .setGameNum(1)
+                        .setGamePrice(game.getPrice())
+                        .setSelected(true)
+                        .setGameImage(game.getCover());
+                this.baseMapper.insert(cart);
+            }else{
+                throw new ServiceException(1004L, "game is not on sale");
+            }
+        }else{
+            //购物车已经含有,添加数量即可
+            haveCart.setGameNum(haveCart.getGameNum()+1);
+            this.baseMapper.updateById(haveCart);
+        }
+
     }
     /**
      * @author biao
@@ -67,9 +81,18 @@ public class CartServiceImpl extends ServiceImpl<CartMapper, Cart> implements IC
                 .eq("id",cart.getId())
                 .eq("user_id",cart.getUserId()));
     }
+
+    @Override
+    public void cancelSelect(Cart cart) {
+        Cart updateCart=new Cart().setSelected(false);
+        this.baseMapper.update(updateCart,new UpdateWrapper<Cart>()
+                .eq("id",cart.getId())
+                .eq("user_id",cart.getUserId()));
+    }
+
     /**
      * @author biao
-     * @param cart 购物车id ，用户id
+     * @param cart 用户id
      */
     @Override
     public void selectAllCart(Cart cart) {
@@ -77,6 +100,14 @@ public class CartServiceImpl extends ServiceImpl<CartMapper, Cart> implements IC
         this.baseMapper.update(updateCart,new UpdateWrapper<Cart>()
                 .eq("user_id",cart.getUserId()));
     }
+
+    @Override
+    public void cancelSelectAllCart(Cart cart) {
+        Cart updateCart=new Cart().setSelected(false);
+        this.baseMapper.update(updateCart,new UpdateWrapper<Cart>()
+                .eq("user_id",cart.getUserId()));
+    }
+
     /**
      * @author biao
      * @param uid 用户id
