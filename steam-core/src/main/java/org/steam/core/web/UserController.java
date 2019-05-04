@@ -73,7 +73,7 @@ public class UserController {
     public ResultModel<IPage> selectList(Integer pageSize, Integer pageNum, User user){
         Page<User> page = new Page<>();
         page.setSize(pageSize);
-        page.setPages(pageNum);
+        page.setCurrent(pageNum);
         QueryWrapper<User> wrapper = new QueryWrapper<>();
         if (!StringUtils.isEmpty(user.getName())) {
             wrapper.eq("name", user.getName());

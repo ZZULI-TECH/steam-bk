@@ -84,7 +84,7 @@ public class GameController {
         Game game = orikaMapperFacade.map(gameVO, Game.class);
         Page<Game> page = new Page<>();
         page.setSize(pageSize);
-        page.setPages(pageNum);
+        page.setCurrent(pageNum);
         QueryWrapper<Game> wrapper = new QueryWrapper<>();
         if (game.getOnSale() != null) {
             wrapper.eq("on_sale", game.getOnSale());
