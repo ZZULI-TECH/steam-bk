@@ -79,8 +79,8 @@ public class GameController {
     }
 
     @ApiOperation(value="分页查询", httpMethod="POST", notes="分页查询")
-    @PostMapping("/list")
-    public ResultModel<IPage> selectList(Integer pageSize, Integer pageNum, @RequestBody GameVO gameVO) {
+    @GetMapping("/list")
+    public ResultModel<IPage> selectList(Integer pageSize, Integer pageNum, GameVO gameVO) {
         Game game = orikaMapperFacade.map(gameVO, Game.class);
         Page<Game> page = new Page<>();
         page.setSize(pageSize);
