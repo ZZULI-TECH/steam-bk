@@ -46,10 +46,6 @@ public class FileController {
     @RequestMapping(value = "/image", method = RequestMethod.POST)
     @ApiOperation(value="Upload image to qiniu.", httpMethod="POST", notes="")
     @Authorization
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "authorization", value = "authorization", required = true, dataType = "String",
-                    paramType = "header")
-    })
     public ResultModel uploadPic(MultipartFile file, HttpServletRequest request) {
 
         Configuration cfg = new Configuration(Zone.zone0());
