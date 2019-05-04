@@ -1,13 +1,10 @@
 package org.steam.core.web;
 
 
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
 import org.steam.common.annotation.Authorization;
 import org.steam.common.exception.ServerException;
 import org.steam.common.exception.ServiceException;
@@ -20,8 +17,6 @@ import org.steam.core.model.vo.CartListVo;
 import org.steam.core.model.vo.CartOperationVo;
 import org.steam.core.service.ICartService;
 import org.steam.core.util.TokenUtil;
-
-import javax.validation.Valid;
 
 /**
  * <p>
@@ -37,9 +32,9 @@ public class CartController {
     @Autowired
     private ICartService cartService;
 
-    @ApiOperation(value="添加到购物车", httpMethod="PUT")
+    @ApiOperation(value="添加到购物车", httpMethod="POST")
     @Authorization
-    @PutMapping("/addToCart")
+    @PostMapping("/addToCart")
     public ResultModel addToCart(@RequestHeader(name = "authorization") String token, @RequestBody AddCartVo addCartParam){
         User user = TokenUtil.getUserFromToken(token);
         ResultModel<Token> model;
@@ -56,16 +51,16 @@ public class CartController {
         }
         return ResultModel.ok();
     }
-    @ApiOperation(value="从购物车中移除", httpMethod="PUT")
+    @ApiOperation(value="从购物车中移除", httpMethod="DELETE")
     @Authorization
-    @PutMapping("/removeFromCart")
-    public ResultModel removeFromCart(@RequestHeader(name = "authorization") String token,@RequestBody CartOperationVo removeCartParam){
+    @RequestMapping("/removeFromCart/{id}")
+    public ResultModel removeFromCart(@RequestHeader(name = "authorization") String token, @PathVariable Long id){
         User user = TokenUtil.getUserFromToken(token);
         if(user == null ){
             throw new ServerException();
         }
         Cart cart=new Cart();
-        cart.setUserId(user.getId()).setId(removeCartParam.getId());
+        cart.setUserId(user.getId()).setId(id);
         cartService.removeFromCart(cart);
         return ResultModel.ok();
     }

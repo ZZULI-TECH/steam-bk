@@ -6,8 +6,6 @@ import org.apache.ibatis.annotations.Param;
 import org.steam.core.model.entity.Order;
 import org.steam.core.model.vo.OrderListVo;
 
-import java.util.List;
-
 /**
  * <p>
  *  Mapper 接口
@@ -20,6 +18,6 @@ public interface OrderMapper extends BaseMapper<Order> {
 
     Order selectOrderByOrderId(Long id);
 
-    Page<OrderListVo> selectOrderListByUid(Page<OrderListVo> page, @Param("order")Order order);
+    Page<OrderListVo> selectOrderListByUid(Page<OrderListVo> page, @Param("order") Order order);
 
 }

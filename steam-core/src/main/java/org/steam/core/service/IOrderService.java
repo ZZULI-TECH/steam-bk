@@ -1,12 +1,10 @@
 package org.steam.core.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.IService;
 import org.steam.common.exception.ServiceException;
 import org.steam.core.model.entity.Order;
-import com.baomidou.mybatisplus.extension.service.IService;
 import org.steam.core.model.vo.OrderListVo;
-
-import java.util.List;
 
 /**
  * <p>
@@ -45,6 +43,11 @@ public interface IOrderService extends IService<Order> {
      */
     Page<OrderListVo> orderList(Integer pageNum, Integer pageSize, Order order);
 
+    /**
+     * 获取订单详情
+     * @param id 订单id
+     * @return Order
+     */
     Order orderInfo(Long id);
 
 }

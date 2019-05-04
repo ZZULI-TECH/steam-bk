@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 2019-05-02
  */
 @RestController
-@RequestMapping("/order-game")
+@RequestMapping("/api/order-game")
 public class OrderGameController {
 
 }
