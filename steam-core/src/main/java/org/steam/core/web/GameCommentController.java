@@ -27,7 +27,7 @@ import org.steam.core.service.IGameCommentService;
  */
 @Api(value = "game-comment")
 @RestController
-@RequestMapping("/game-comment")
+@RequestMapping("/api/game-comment")
 public class GameCommentController {
 
     @Autowired

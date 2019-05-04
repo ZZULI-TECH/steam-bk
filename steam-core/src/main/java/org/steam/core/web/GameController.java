@@ -36,7 +36,7 @@ import java.util.List;
  */
 @Api(value = "game")
 @RestController
-@RequestMapping("/game")
+@RequestMapping("/api/game")
 public class GameController {
     @Autowired
     private IGameService gameService;
@@ -78,7 +78,7 @@ public class GameController {
         return ResultModel.ok(gameVO);
     }
 
-    @ApiOperation(value="分页查询", httpMethod="POST", notes="分页查询")
+    @ApiOperation(value="分页查询", httpMethod="GET", notes="分页查询")
     @GetMapping("/list")
     public ResultModel<IPage> selectList(Integer pageSize, Integer pageNum, GameVO gameVO) {
         Game game = orikaMapperFacade.map(gameVO, Game.class);

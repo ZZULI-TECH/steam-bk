@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 2019-04-28
  */
 @RestController
-@RequestMapping("/user-message")
+@RequestMapping("/api/user-message")
 public class UserMessageController {
 
 }
