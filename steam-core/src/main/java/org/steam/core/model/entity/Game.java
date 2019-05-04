@@ -2,6 +2,7 @@ package org.steam.core.model.entity;
 
 import java.math.BigDecimal;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import org.steam.common.model.VersionEntity;
 import com.baomidou.mybatisplus.annotation.TableName;
 
@@ -92,10 +93,12 @@ public class Game extends VersionEntity {
     /**
      * 评论
      */
+    @TableField(exist = false)
     private List<GameComment> comments;
 
     /**
      * 图片
      */
+    @TableField(exist = false)
     private List<GameImage> images;
 }
