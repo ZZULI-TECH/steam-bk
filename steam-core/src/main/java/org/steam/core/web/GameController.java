@@ -20,6 +20,7 @@ import org.steam.common.model.ResultModel;
 import org.steam.core.model.entity.Game;
 import org.steam.core.model.entity.User;
 import org.steam.core.model.vo.GameCommentVO;
+import org.steam.core.model.vo.GameImageVO;
 import org.steam.core.model.vo.GameVO;
 import org.steam.core.service.IGameService;
 
@@ -68,13 +69,18 @@ public class GameController {
             List<GameCommentVO> commentVOS = orikaMapperFacade.mapAsList(game.getComments(), GameCommentVO.class);
             gameVO.setComments(commentVOS);
         }
+        
+        if (CollectionUtils.isEmpty(game.getImages())) {
+            List<GameImageVO> imageVOS = orikaMapperFacade.mapAsList(game.getImages(), GameImageVO.class);
+            gameVO.setImages(imageVOS);
+        }
 
         return ResultModel.ok(gameVO);
     }
 
     @ApiOperation(value="分页查询", httpMethod="POST", notes="分页查询")
-    @PostMapping("/list")
-    public ResultModel<IPage> selectList(Integer pageSize, Integer pageNum, @RequestBody GameVO gameVO) {
+    @GetMapping("/list")
+    public ResultModel<IPage> selectList(Integer pageSize, Integer pageNum, GameVO gameVO) {
         Game game = orikaMapperFacade.map(gameVO, Game.class);
         Page<Game> page = new Page<>();
         page.setSize(pageSize);
@@ -83,6 +89,7 @@ public class GameController {
         if (game.getOnSale() != null) {
             wrapper.eq("on_sale", game.getOnSale());
         }
+        wrapper.orderByDesc("gmt_create");
 
         IPage<Game> games = gameService.page(page, wrapper);
         return ResultModel.ok(games);

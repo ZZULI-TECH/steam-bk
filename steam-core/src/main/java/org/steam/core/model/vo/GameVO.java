@@ -78,4 +78,5 @@ public class GameVO extends VersionEntity {
     private Boolean onSale;
 
     private List<GameCommentVO> comments;
+    private List<GameImageVO> images;
 }

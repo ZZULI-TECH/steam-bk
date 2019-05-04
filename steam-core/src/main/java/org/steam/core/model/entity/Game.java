@@ -95,4 +95,10 @@ public class Game extends VersionEntity {
      */
     @TableField(exist = false)
     private List<GameComment> comments;
+
+    /**
+     * 图片
+     */
+    @TableField(exist = false)
+    private List<GameImage> images;
 }

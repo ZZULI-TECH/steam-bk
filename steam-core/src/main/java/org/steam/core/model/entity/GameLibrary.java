@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
+import org.steam.common.model.Entity;
 import org.steam.common.model.VersionEntity;
 
 /**
@@ -18,7 +19,7 @@ import org.steam.common.model.VersionEntity;
 @EqualsAndHashCode(callSuper = true)
 @Accessors(chain = true)
 @TableName("t_game_library")
-public class GameLibrary extends VersionEntity {
+public class GameLibrary extends Entity {
     private static final long serialVersionUID = -91297063149044971L;
 
     /**

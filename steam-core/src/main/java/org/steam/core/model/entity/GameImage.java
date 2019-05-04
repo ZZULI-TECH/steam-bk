@@ -1,5 +1,6 @@
 package org.steam.core.model.entity;
 
+import org.steam.common.model.Entity;
 import org.steam.common.model.VersionEntity;
 import com.baomidou.mybatisplus.annotation.TableName;
 
@@ -22,7 +23,7 @@ import lombok.experimental.Accessors;
 @EqualsAndHashCode(callSuper = true)
 @Accessors(chain = true)
 @TableName("t_game_image")
-public class GameImage extends VersionEntity {
+public class GameImage extends Entity {
 
     private static final long serialVersionUID = 1L;
 
