@@ -43,16 +43,6 @@ public class Order extends VersionEntity {
     private Boolean orderStatus;
 
     /**
-     * 支付状态
-     */
-    private Boolean payStatus;
-
-    /**
-     * 发货状态
-     */
-    private Boolean shippingStatus;
-
-    /**
      * 收货人
      */
     private String consignee;

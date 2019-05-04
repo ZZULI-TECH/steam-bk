@@ -62,5 +62,10 @@ public class OrderGame extends VersionEntity {
      */
     private String gameCover;
 
+    /**
+     * 游戏类型
+     */
+    private String gameType;
+
 
 }

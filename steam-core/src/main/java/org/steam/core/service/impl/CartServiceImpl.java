@@ -47,7 +47,8 @@ public class CartServiceImpl extends ServiceImpl<CartMapper, Cart> implements IC
                         .setGameNum(1)
                         .setGamePrice(game.getPrice())
                         .setSelected(true)
-                        .setGameImage(game.getCover());
+                        .setGameImage(game.getCover())
+                        .setGameType(game.getType());
                 this.baseMapper.insert(cart);
             }else{
                 throw new ServiceException(1004L, "game is not on sale");
