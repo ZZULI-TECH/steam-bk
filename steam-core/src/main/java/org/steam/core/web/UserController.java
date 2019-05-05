@@ -13,6 +13,7 @@ import org.steam.common.exception.ServerException;
 import org.steam.common.exception.ServiceException;
 import org.steam.common.exception.VersionException;
 import org.steam.common.model.ResultModel;
+import org.steam.core.json.JSON;
 import org.steam.core.model.entity.User;
 import org.steam.core.service.UserService;
 import org.steam.core.util.TokenUtil;
@@ -32,12 +33,14 @@ public class UserController {
 
     @ApiOperation(value="通过id获取用户信息", httpMethod="GET")
     @GetMapping("/{id}")
+    @JSON(type = User.class ,include = "name,age")
     public ResultModel<User> getUserInfo(@PathVariable Long id){
         return ResultModel.ok(userService.getById(id));
     }
 
     @ApiOperation(value="通过用户名获取用户信息", httpMethod="GET")
     @GetMapping("/getByName")
+    @JSON(type = User.class ,filter = "name,age")
     public ResultModel<User> getUserInfoByName(@RequestParam("name") String name) {
         User user = userService.getOne(new QueryWrapper<User>().eq("name",name));
         return ResultModel.ok(user);
