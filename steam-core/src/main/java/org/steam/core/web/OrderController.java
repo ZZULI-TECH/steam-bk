@@ -2,6 +2,7 @@ package org.steam.core.web;
 
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,6 +28,7 @@ import org.steam.core.util.TokenUtil;
  * @author biao
  * @since 2019-04-28
  */
+@Api(value = "order")
 @RestController
 @RequestMapping("/api/order")
 public class OrderController {

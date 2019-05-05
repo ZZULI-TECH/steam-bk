@@ -1,5 +1,6 @@
 package org.steam.core.web;
 
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,6 +15,7 @@ import org.steam.core.model.vo.PayVo;
 import org.steam.core.service.IPayService;
 import org.steam.core.util.TokenUtil;
 
+@Api(value = "pay")
 @RestController
 @RequestMapping("/api/pay")
 public class PayController {
