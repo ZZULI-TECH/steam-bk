@@ -71,7 +71,7 @@ public class AccountController {
     @RequestMapping(value = "/logout", method = RequestMethod.DELETE)
     @Authorization
     @ApiOperation(value="Logout", httpMethod="DELETE", notes="Logout")
-    public ResponseEntity<ResultModel> logout(@RequestBody @CurrentUser User user) {
+    public ResponseEntity<ResultModel> logout(@CurrentUser User user) {
         accountService.logout(user);
 
         return new ResponseEntity<>(ResultModel.ok(), HttpStatus.OK);
