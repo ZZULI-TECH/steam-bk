@@ -53,7 +53,7 @@ public class CartController {
     }
     @ApiOperation(value="从购物车中移除", httpMethod="DELETE")
     @Authorization
-    @RequestMapping("/removeFromCart/{id}")
+    @DeleteMapping("/removeFromCart/{id}")
     public ResultModel removeFromCart(@RequestHeader(name = "authorization") String token, @PathVariable Long id){
         User user = TokenUtil.getUserFromToken(token);
         if(user == null ){

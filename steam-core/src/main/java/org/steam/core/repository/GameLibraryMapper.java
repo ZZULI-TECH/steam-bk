@@ -1,7 +1,10 @@
 package org.steam.core.repository;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import org.apache.ibatis.annotations.Param;
 import org.steam.core.model.entity.GameLibrary;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.steam.core.model.vo.GameLibraryVO;
 
 /**
  * <p>
@@ -12,5 +15,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @since 2019-04-28
  */
 public interface GameLibraryMapper extends BaseMapper<GameLibrary> {
+
+    Page<GameLibraryVO> selectGameLibraryPage(Page<GameLibraryVO> page, @Param("uid")Long uid);
 
 }

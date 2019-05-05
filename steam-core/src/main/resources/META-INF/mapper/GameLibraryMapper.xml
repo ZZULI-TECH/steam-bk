@@ -2,4 +2,36 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.steam.core.repository.GameLibraryMapper">
 
+    <resultMap id="gameLibraryResultMap" type="org.steam.core.model.vo.GameLibraryVO">
+        <id column="id" property="id"/>
+        <result column="uid" property="uid"/>
+        <result column="game_id" property="gameId"/>
+        <result column="name" property="name"/>
+        <result column="type" property="type"/>
+        <result column="english_name" property="englishName"/>
+        <result column="click_count" property="clickCount"/>
+        <result column="sales" property="sales"/>
+        <result column="price" property="price"/>
+        <result column="cover" property="cover"/>
+        <result column="keywords" property="keywords"/>
+        <result column="remark" property="remark"/>
+        <result column="content" property="content"/>
+        <result column="download_url" property="downloadUrl"/>
+        <result column="deleted" property="deleted"/>
+        <result column="version" property="version"/>
+        <result column="gmt_create" property="gmtCreate"/>
+        <result column="gmt_modified" property="gmtModified"/>
+    </resultMap>
+
+    <select id="selectGameLibraryPage" resultMap="gameLibraryResultMap">
+        SELECT
+            gl.id,gl.uid,gl.game_id,gl.gmt_create,gl.gmt_modified,gl.version,
+            g.name,g.type,g.english_name,g.click_count,g.sales,g.price,g.cover,g.keywords,g.remark,g.content,g.download_url
+        FROM
+            t_game_library gl
+            LEFT JOIN t_game g on gl.game_id = g.id
+        WHERE
+            gl.uid = #{uid} AND gl.deleted = 0
+    </select>
+
 </mapper>

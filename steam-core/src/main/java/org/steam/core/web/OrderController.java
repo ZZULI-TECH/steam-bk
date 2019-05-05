@@ -55,7 +55,8 @@ public class OrderController {
     @ApiOperation(value="在游戏页面点击立即下单，即不添加购物车直接下单", httpMethod="POST")
     @Authorization
     @PostMapping("/createOrderQuickly")
-    public ResultModel createOrderQuickly(@RequestHeader(name = "authorization") String token, @RequestBody CreateOrderVO orderVO){
+    public ResultModel createOrderQuickly(@RequestHeader(name = "authorization") String token,
+                                          @RequestBody CreateOrderVO orderVO){
         User user = TokenUtil.getUserFromToken(token);
         ResultModel<Token> model;
         if(user == null ){
@@ -73,7 +74,8 @@ public class OrderController {
     @ApiOperation(value="取消未付款的订单", httpMethod="POST")
     @Authorization
     @PostMapping("/cancelOrder")
-    public ResultModel cancelOrder(@RequestHeader(name = "authorization") String token, @RequestBody OrderVO orderVO){
+    public ResultModel cancelOrder(@RequestHeader(name = "authorization") String token,
+                                   @RequestBody OrderVO orderVO){
         User user = TokenUtil.getUserFromToken(token);
         ResultModel<Token> model;
         if(user == null ){
@@ -108,7 +110,7 @@ public class OrderController {
 
     @ApiOperation(value="订单详情", httpMethod="GET")
     @Authorization
-    @GetMapping("/orderList/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<ResultModel> orderList(@RequestHeader(name = "authorization") String token,
                                                  @PathVariable Long id ){
         User user = TokenUtil.getUserFromToken(token);

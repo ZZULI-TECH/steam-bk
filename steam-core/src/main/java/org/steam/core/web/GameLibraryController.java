@@ -1,21 +1,20 @@
 package org.steam.core.web;
 
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import ma.glasnost.orika.MapperFacade;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+import org.steam.common.annotation.Authorization;
+import org.steam.common.exception.ServerException;
 import org.steam.common.model.ResultModel;
-import org.steam.core.model.entity.GameImage;
-import org.steam.core.model.entity.GameLibrary;
-import org.steam.core.model.vo.GameImageVO;
-import org.steam.core.model.vo.GameLibraryVO;
+import org.steam.core.model.entity.Order;
+import org.steam.core.model.entity.User;
 import org.steam.core.service.IGameLibraryService;
-import org.steam.core.service.impl.GameLibraryServiceImpl;
-
-import java.util.List;
+import org.steam.core.util.TokenUtil;
 
 /**
  * <p>
@@ -32,22 +31,26 @@ public class GameLibraryController {
     @Autowired
     private IGameLibraryService gameLibraryService;
 
-    @Autowired
-    private MapperFacade orikaMapperFacade;
 
-    @ApiOperation(value="新增用户游戏库", httpMethod="POST", notes="新增用户游戏库")
-    @PostMapping
-    public ResultModel save(@RequestBody GameLibraryVO gameLibraryVO) {
-        GameLibrary gameLibrary = orikaMapperFacade.map(gameLibraryVO, GameLibrary.class);
-        gameLibraryService.save(gameLibrary);
-        return ResultModel.ok();
+    @ApiOperation(value="用户游戏库列表", httpMethod="GET")
+    @Authorization
+    @GetMapping("/list/{pageNum}/{pageSize}")
+    public ResponseEntity<ResultModel> orderList(@RequestHeader(name = "authorization") String token,
+                                                 @PathVariable Integer pageNum ,
+                                                 @PathVariable Integer pageSize){
+        User user = TokenUtil.getUserFromToken(token);
+        ResultModel<Page> model;
+        if(user == null ){
+            throw new ServerException();
+        }
+        model = ResultModel.ok(gameLibraryService.listLibrary(pageNum,pageSize,user.getId()));
+        return new ResponseEntity<>(model, HttpStatus.OK);
     }
 
     @ApiOperation(value="删除用户游戏库", httpMethod="DELETE", notes="删除用户游戏库")
     @DeleteMapping("/{id}")
     public ResultModel delete(@PathVariable Long id) {
         gameLibraryService.removeById(id);
-
         return ResultModel.ok();
     }
 }
