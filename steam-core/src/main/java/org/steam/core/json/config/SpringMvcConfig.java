@@ -3,6 +3,13 @@ package org.steam.core.json.config;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalTimeDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalTimeSerializer;
+import org.springframework.boot.autoconfigure.jackson.Jackson2ObjectMapperBuilderCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -13,6 +20,10 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.steam.core.json.spring.JsonReturnHandler;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Configuration
@@ -27,7 +38,7 @@ public class SpringMvcConfig implements WebMvcConfigurer {
     }
 
     /**
-     * @description long2String
+     * @description long2String & format Time
      * @date 2019/5/8 11:16
      * @param converters
      * @return void
@@ -38,9 +49,46 @@ public class SpringMvcConfig implements WebMvcConfigurer {
         SimpleModule simpleModule = new SimpleModule();
         simpleModule.addSerializer(Long.class, ToStringSerializer.instance);
         simpleModule.addSerializer(Long.TYPE, ToStringSerializer.instance);
+        simpleModule.addSerializer(LocalDateTime.class, localDateTimeSerializer());
+        simpleModule.addSerializer(LocalTime.class, localTimeSerializer());
+        simpleModule.addSerializer(LocalDate.class,localDateSerializer());
+        simpleModule.addDeserializer(LocalDateTime.class,localDateTimeDeserializer());
+        simpleModule.addDeserializer(LocalTime.class,localTimeDeserializer());
+        simpleModule.addDeserializer(LocalDate.class,localDateDeserializer());
         objectMapper.registerModule(simpleModule);
         jackson2HttpMessageConverter.setObjectMapper(objectMapper);
         converters.add(jackson2HttpMessageConverter);
+    }
+
+    @Bean
+    public LocalDateTimeSerializer localDateTimeSerializer() {
+        return new LocalDateTimeSerializer(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+    }
+
+    @Bean
+    public LocalDateTimeDeserializer localDateTimeDeserializer() {
+        return new LocalDateTimeDeserializer(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+    }
+
+
+    @Bean
+    public LocalDateSerializer localDateSerializer(){
+        return new LocalDateSerializer(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+    }
+
+    @Bean
+    public LocalDateDeserializer localDateDeserializer() {
+        return new LocalDateDeserializer(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+    }
+
+    @Bean
+    public LocalTimeSerializer localTimeSerializer(){
+        return new LocalTimeSerializer(DateTimeFormatter.ofPattern("HH:mm:ss"));
+    }
+
+    @Bean
+    public LocalTimeDeserializer localTimeDeserializer() {
+        return new LocalTimeDeserializer(DateTimeFormatter.ofPattern("HH:mm:ss"));
     }
 
     @Override

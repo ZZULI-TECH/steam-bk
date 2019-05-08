@@ -14,7 +14,7 @@ import org.steam.common.model.Entity;
 public class GameCommentVO extends Entity {
 
     private static final long serialVersionUID = 1040966253513753393L;
-    private Long userId;
+    private Long uid;
 
     private Long gameId;
 

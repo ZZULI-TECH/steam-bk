@@ -39,6 +39,7 @@ public class GameCommentController {
     @ApiOperation(value="新增游戏评论", httpMethod="POST", notes="新增游戏评论")
     @PostMapping
     public ResultModel save(@RequestBody GameCommentVO gameCommentVO) {
+        gameCommentVO.setDeleted(0);
         GameComment gameComment = orikaMapperFacade.map(gameCommentVO, GameComment.class);
         gameCommentService.save(gameComment);
         return ResultModel.ok();

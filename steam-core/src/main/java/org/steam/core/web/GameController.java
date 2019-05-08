@@ -18,10 +18,14 @@ import org.steam.common.exception.ServiceException;
 import org.steam.common.exception.VersionException;
 import org.steam.common.model.ResultModel;
 import org.steam.core.model.entity.Game;
+import org.steam.core.model.entity.GameComment;
+import org.steam.core.model.entity.GameImage;
 import org.steam.core.model.entity.User;
 import org.steam.core.model.vo.GameCommentVO;
 import org.steam.core.model.vo.GameImageVO;
 import org.steam.core.model.vo.GameVO;
+import org.steam.core.service.IGameCommentService;
+import org.steam.core.service.IGameImageService;
 import org.steam.core.service.IGameService;
 
 import java.util.List;
@@ -40,6 +44,12 @@ import java.util.List;
 public class GameController {
     @Autowired
     private IGameService gameService;
+
+    @Autowired
+    private IGameCommentService gameCommentService;
+
+    @Autowired
+    private IGameImageService gameImageService;
 
     @Autowired
     private MapperFacade orikaMapperFacade;
@@ -64,13 +74,17 @@ public class GameController {
     @GetMapping("/{id}")
     public ResultModel<GameVO> get(@PathVariable("id") Long id) {
         Game game = gameService.getById(id);
+        List<GameComment> comments = gameCommentService.list(new QueryWrapper<GameComment>().eq("game_id", game.getId()));
+        game.setComments(comments);
+        List<GameImage> images = gameImageService.list(new QueryWrapper<GameImage>().eq("game_id", game.getId()));
+        game.setImages(images);
         GameVO gameVO = orikaMapperFacade.map(game, GameVO.class);
         if (!CollectionUtils.isEmpty(game.getComments())) {
             List<GameCommentVO> commentVOS = orikaMapperFacade.mapAsList(game.getComments(), GameCommentVO.class);
             gameVO.setComments(commentVOS);
         }
         
-        if (CollectionUtils.isEmpty(game.getImages())) {
+        if (!CollectionUtils.isEmpty(game.getImages())) {
             List<GameImageVO> imageVOS = orikaMapperFacade.mapAsList(game.getImages(), GameImageVO.class);
             gameVO.setImages(imageVOS);
         }
