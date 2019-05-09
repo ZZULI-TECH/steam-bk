@@ -24,7 +24,7 @@ public class ProcessInterceptor implements HandlerInterceptor {
 
         String method = httpServletRequest.getMethod();
 
-        if (method.equals("OPTIONS")){
+        if ("OPTIONS".equals(method)){
             httpServletResponse.setStatus(200);
             return false;
         }
