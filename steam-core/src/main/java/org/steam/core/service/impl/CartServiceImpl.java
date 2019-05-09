@@ -38,7 +38,11 @@ public class CartServiceImpl extends ServiceImpl<CartMapper, Cart> implements IC
      */
     @Override
     public void addToCart(Cart cart) throws ServiceException {
-        Cart haveCart = this.baseMapper.selectOne(new QueryWrapper<Cart>().eq("game_id", cart.getGameId()));
+        QueryWrapper<Cart> wrapper = new QueryWrapper<Cart>();
+        wrapper.eq("game_id", cart.getGameId());
+        wrapper.eq("user_id", cart.getUserId());
+        Cart haveCart = this.baseMapper.selectOne(wrapper);
+
         if(haveCart==null){
             //购物车尚未拥有
             Game game = gameService.getById(cart.getGameId());

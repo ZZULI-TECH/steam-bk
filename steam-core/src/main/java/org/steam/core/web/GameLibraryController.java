@@ -35,16 +35,12 @@ public class GameLibraryController {
 
     @ApiOperation(value="用户游戏库列表", httpMethod="GET")
     @Authorization
-    @GetMapping("/list/{pageNum}/{pageSize}")
-    public ResponseEntity<ResultModel> orderList(@RequestHeader(name = "authorization") String token,
+    @GetMapping("/list/{userId}/{pageNum}/{pageSize}")
+    public ResponseEntity<ResultModel> orderList(@PathVariable long userId,
                                                  @PathVariable Integer pageNum ,
                                                  @PathVariable Integer pageSize){
-        User user = TokenUtil.getUserFromToken(token);
         ResultModel<Page> model;
-        if(user == null ){
-            throw new ServerException();
-        }
-        model = ResultModel.ok(gameLibraryService.listLibrary(pageNum,pageSize,user.getId()));
+        model = ResultModel.ok(gameLibraryService.listLibrary(pageNum,pageSize,userId));
         return new ResponseEntity<>(model, HttpStatus.OK);
     }
 

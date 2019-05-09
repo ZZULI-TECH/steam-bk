@@ -25,15 +25,11 @@ public class PayController {
 
     @ApiOperation(value="支付订单", httpMethod="POST")
     @Authorization
-    @PostMapping("/payOrder")
-    public ResultModel payOrder(@RequestHeader(name = "authorization") String token, @RequestBody PayVo payVo){
-        User user = TokenUtil.getUserFromToken(token);
+    @PostMapping("/payOrder/{userId}")
+    public ResultModel payOrder(@PathVariable long userId, @RequestBody PayVo payVo){
         ResultModel<Token> model;
-        if(user == null ){
-            throw new ServerException();
-        }
         try {
-            payService.pay(payVo.getOrderId(),user.getId());
+            payService.pay(payVo.getOrderId(),userId);
         } catch (ServiceException e) {
             model = ResultModel.fail(e.getCode(), e.getMessage());
             throw new ServerException(model, HttpStatus.INTERNAL_SERVER_ERROR);

@@ -1,6 +1,7 @@
 package org.steam.core.web;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -34,15 +35,11 @@ public class CartController {
 
     @ApiOperation(value="添加到购物车", httpMethod="POST")
     @Authorization
-    @PostMapping("/addToCart")
-    public ResultModel addToCart(@RequestHeader(name = "authorization") String token, @RequestBody AddCartVo addCartParam){
-        User user = TokenUtil.getUserFromToken(token);
+    @PostMapping("/addToCart/{userId}")
+    public ResultModel addToCart(@PathVariable long userId, @RequestBody AddCartVo addCartParam){
         ResultModel<Token> model;
-        if(user == null ){
-            throw new ServerException();
-        }
         Cart cart=new Cart();
-        cart.setUserId(user.getId()).setGameId(addCartParam.getGameId());
+        cart.setUserId(userId).setGameId(addCartParam.getGameId());
         try {
             cartService.addToCart(cart);
         } catch (ServiceException e) {
@@ -53,41 +50,29 @@ public class CartController {
     }
     @ApiOperation(value="从购物车中移除", httpMethod="DELETE")
     @Authorization
-    @DeleteMapping("/removeFromCart/{id}")
-    public ResultModel removeFromCart(@RequestHeader(name = "authorization") String token, @PathVariable Long id){
-        User user = TokenUtil.getUserFromToken(token);
-        if(user == null ){
-            throw new ServerException();
-        }
+    @DeleteMapping("/removeFromCart/{id}/{userId}")
+    public ResultModel removeFromCart(@PathVariable long userId, @PathVariable Long id){
         Cart cart=new Cart();
-        cart.setUserId(user.getId()).setId(id);
+        cart.setUserId(userId).setId(id);
         cartService.removeFromCart(cart);
         return ResultModel.ok();
     }
     @ApiOperation(value="选中购物车的游戏", httpMethod="PUT")
     @Authorization
-    @PutMapping("/selectCart")
-    public ResultModel selectCart(@RequestHeader(name = "authorization") String token,@RequestBody CartOperationVo selectCartParam){
-        User user = TokenUtil.getUserFromToken(token);
-        if(user == null ){
-            throw new ServerException();
-        }
+    @PutMapping("/selectCart/{userId}")
+    public ResultModel selectCart(@PathVariable long userId,@RequestBody CartOperationVo selectCartParam){
         Cart cart=new Cart();
-        cart.setUserId(user.getId()).setId(selectCartParam.getId());
+        cart.setUserId(userId).setId(selectCartParam.getId());
         cartService.selectCart(cart);
         return ResultModel.ok();
     }
 
     @ApiOperation(value="取消选中购物车的游戏", httpMethod="PUT")
     @Authorization
-    @PutMapping("/cancelSelect")
-    public ResultModel cancelSelect(@RequestHeader(name = "authorization") String token,@RequestBody CartOperationVo selectCartParam){
-        User user = TokenUtil.getUserFromToken(token);
-        if(user == null ){
-            throw new ServerException();
-        }
+    @PutMapping("/cancelSelect/{userId}")
+    public ResultModel cancelSelect(@PathVariable long userId,@RequestBody CartOperationVo selectCartParam){
         Cart cart=new Cart();
-        cart.setUserId(user.getId()).setId(selectCartParam.getId());
+        cart.setUserId(userId).setId(selectCartParam.getId());
         cartService.cancelSelect(cart);
         return ResultModel.ok();
     }
@@ -95,40 +80,39 @@ public class CartController {
 
     @ApiOperation(value="选中所有", httpMethod="PUT")
     @Authorization
-    @PutMapping("/selectAllCart")
-    public ResultModel selectAllCart(@RequestHeader(name = "authorization") String token){
-        User user = TokenUtil.getUserFromToken(token);
-        if(user == null ){
-            throw new ServerException();
-        }
+    @PutMapping("/selectAllCart/{userId}")
+    public ResultModel selectAllCart(@PathVariable long userId){
         Cart cart=new Cart();
-        cart.setUserId(user.getId());
+        cart.setUserId(userId);
         cartService.selectAllCart(cart);
         return ResultModel.ok();
     }
 
     @ApiOperation(value="取消选中所有", httpMethod="PUT")
     @Authorization
-    @PutMapping("/cancelSelectAll")
-    public ResultModel cancelSelectAll(@RequestHeader(name = "authorization") String token){
-        User user = TokenUtil.getUserFromToken(token);
-        if(user == null ){
-            throw new ServerException();
-        }
+    @PutMapping("/cancelSelectAll/{userId}")
+    public ResultModel cancelSelectAll(@PathVariable long userId){
         Cart cart=new Cart();
-        cart.setUserId(user.getId());
+        cart.setUserId(userId);
         cartService.cancelSelectAllCart(cart);
         return ResultModel.ok();
     }
 
     @ApiOperation(value="查看我的购物车", httpMethod="GET")
     @Authorization
-    @GetMapping("/cartList")
-    public ResultModel<CartListVo> listMyCart(@RequestHeader(name = "authorization") String token){
-        User user = TokenUtil.getUserFromToken(token);
-        if(user == null ){
-            throw new ServerException();
-        }
-        return ResultModel.ok(cartService.listMyCart(user.getId()));
+    @GetMapping("/cartList/{userId}")
+    public ResultModel<CartListVo> listMyCart(@PathVariable long userId){
+        return ResultModel.ok(cartService.listMyCart(userId));
+    }
+
+    @ApiOperation(value="检查购物车是否有重复", httpMethod="GET")
+    @Authorization
+    @GetMapping("/checkCar/{userId}/{gameId}")
+    public ResultModel<Cart> checkCar(@PathVariable long userId, @PathVariable long gameId){
+        QueryWrapper<Cart> wrapper = new QueryWrapper<Cart>();
+        wrapper.eq("game_id", gameId);
+        wrapper.eq("user_id", userId);
+        Cart haveCart = cartService.getOne(wrapper);
+        return ResultModel.ok(haveCart);
     }
 }
