@@ -107,7 +107,9 @@ public class GameController {
         if (!StringUtils.isEmpty(game.getKeywords())) {
             wrapper.like("keywords", game.getKeywords());
         }
-
+        if (!StringUtils.isEmpty(game.getPrice())) {
+            wrapper.eq("price", game.getPrice());
+        }
         if (!StringUtils.isEmpty(game.getType())) {
             wrapper.like("type", game.getType());
         }
@@ -142,5 +144,23 @@ public class GameController {
         }
 
         return ResultModel.ok();
+    }
+
+    @ApiOperation(value = "搜索", httpMethod = "GET")
+    @GetMapping("/search")
+    public ResultModel search(Integer pageSize, Integer pageNum, GameVO gameVO) {
+        Game game = orikaMapperFacade.map(gameVO, Game.class);
+        Page<Game> page = new Page<>();
+        page.setSize(pageSize);
+        page.setCurrent(pageNum);
+        QueryWrapper<Game> wrapper = new QueryWrapper<>();
+        if (game.getOnSale() != null) {
+            wrapper.eq("on_sale", game.getOnSale());
+        }
+        wrapper.apply("(UPPER(name) like {0} or UPPER(keywords) like {1} or UPPER(english_name) like {2})", "%"+game.getKeywords().toUpperCase()+"%", "%"+game.getKeywords().toUpperCase()+"%", "%"+game.getKeywords().toUpperCase()+"%");
+        wrapper.orderByDesc("gmt_modified");
+
+        IPage<Game> games = gameService.page(page, wrapper);
+        return ResultModel.ok(games);
     }
 }
