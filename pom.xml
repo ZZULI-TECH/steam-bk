@@ -42,6 +42,7 @@
     <freemarker.version>2.3.28</freemarker.version>
     <junit.version>4.12</junit.version>
     <qiniu-java-sdk.version>[7.2.0, 7.2.99]</qiniu-java-sdk.version>
+    <ijapy.version>1.1.6</ijapy.version>
   </properties>
 
   <dependencies>
@@ -156,6 +157,38 @@
         <artifactId>qiniu-java-sdk</artifactId>
         <version>${qiniu-java-sdk.version}</version>
       </dependency>
+
+      <!-- 开源多维码生成工具 -->
+      <dependency>
+        <groupId>com.google.zxing</groupId>
+        <artifactId>core</artifactId>
+        <version>3.2.1</version>
+      </dependency>
+      <dependency>
+        <groupId>com.google.zxing</groupId>
+        <artifactId>javase</artifactId>
+        <version>3.2.1</version>
+      </dependency>
+      <!-- 开源多维码生成工具 -->
+
+      <!-- 支付宝必须 -->
+      <dependency>
+        <groupId>com.github.javen205</groupId>
+        <artifactId>IJPay</artifactId>
+        <version>${ijapy.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>commons-logging</groupId>
+        <artifactId>commons-logging</artifactId>
+        <version>1.2</version>
+      </dependency>
+      <dependency>
+        <groupId>com.alipay.sdk</groupId>
+        <artifactId>alipay-sdk-java</artifactId>
+        <version>3.0.52.ALL</version>
+      </dependency>
+      <!-- 支付宝必须 -->
+
     </dependencies>
   </dependencyManagement>
 
