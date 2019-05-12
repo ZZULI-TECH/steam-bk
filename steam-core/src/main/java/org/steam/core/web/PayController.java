@@ -49,23 +49,6 @@ public class PayController {
         return ResultModel.ok();
     }
 
-    /**
-     * 这个接口用GET会跳转到支付宝页面
-     * @param response
-     * @param userId
-     * @param orderId
-     */
-    @ApiOperation(value="到支付宝页面支付订单", httpMethod="GET")
-    @Authorization
-    @RequestMapping("/pay/{userId}/{orderId}")
-    public void pay(HttpServletResponse response, @PathVariable long userId, @PathVariable long orderId){
-        PayPageVO payPage = payService.payOrder(orderId, userId);
-        try {
-            AliPayApi.tradePage(response, payPage.getModel(), payPage.getNotifyUrl(), payPage.getNotifyUrl());
-        } catch (AlipayApiException | IOException e) {
-            e.printStackTrace();
-        }
-    }
 
 
     @ApiOperation(value="支付订单", httpMethod="POST")
