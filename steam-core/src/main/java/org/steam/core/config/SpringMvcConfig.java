@@ -28,12 +28,16 @@ import java.util.List;
 @EnableWebMvc
 public class SpringMvcConfig implements WebMvcConfigurer {
 
+    /**
+     * cors跨域
+     * @return
+     */
     @Bean
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurerAdapter() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**");
+                registry.addMapping("/api/*").allowedOrigins("http://localhost:9090");
             }
         };
     }
