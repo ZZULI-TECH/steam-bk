@@ -20,7 +20,7 @@ spring:
         min-idle: 0
 
 mybatis-plus:
-  mapper-locations: classpath*:/META-INF/mappers/**Mapper.xml
+  mapper-locations: classpath*:/META-INF/mapper/**Mapper.xml
   typeAliasesPackage: org.steam.core.model.entity
   global-config:
     db-config:

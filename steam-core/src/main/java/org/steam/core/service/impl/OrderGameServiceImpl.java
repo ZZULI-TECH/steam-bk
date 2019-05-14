@@ -54,8 +54,9 @@ public class OrderGameServiceImpl extends ServiceImpl<OrderGameMapper, OrderGame
         }
         if(orderGames.size() == 1){
             this.baseMapper.insert(orderGames.get(0));
+        } else {
+            this.saveBatch(orderGames);
         }
-        this.saveBatch(orderGames);
     }
 
     @Override

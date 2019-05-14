@@ -47,10 +47,10 @@
     <select id="selectOrderListByUid"  resultMap="orderResultMap">
         SELECT * FROM t_order
         WHERE
-        id = #{order.uid}
+        uid = #{order.uid}
         and deleted = 0
         <choose>
-            <when test="orderStatus != null ">
+            <when test="order.orderStatus != null ">
                 AND order_status = #{order.orderStatus}
             </when>
         </choose>

@@ -13,6 +13,7 @@ import org.steam.common.exception.ServerException;
 import org.steam.common.exception.ServiceException;
 import org.steam.common.exception.VersionException;
 import org.steam.common.model.ResultModel;
+import org.steam.common.util.MD5Util;
 import org.steam.core.json.JSON;
 import org.steam.core.model.entity.User;
 import org.steam.core.service.UserService;
@@ -33,7 +34,7 @@ public class UserController {
 
     @ApiOperation(value="通过id获取用户信息", httpMethod="GET")
     @GetMapping("/{id}")
-    @JSON(type = User.class ,include = "name,age")
+//    @JSON(type = User.class ,include = "name,age")
     public ResultModel<User> getUserInfo(@PathVariable Long id){
         return ResultModel.ok(userService.getById(id));
     }
@@ -47,8 +48,8 @@ public class UserController {
     }
 
     @ApiOperation(value="更新用户信息", httpMethod="PUT")
-    @PutMapping
-    public ResultModel<User> updateById(@RequestBody @Valid User user){
+    @PutMapping("/update")
+    public ResultModel<User> updateById(@RequestBody User user){
         userService.updateById(user);
         return ResultModel.ok();
     }
@@ -102,6 +103,15 @@ public class UserController {
       User user = TokenUtil.getUserFromToken(token);
       user.setPassword("");
       return ResultModel.ok(user);
+    }
+
+    @ApiOperation(value="检查旧密码是否正确", httpMethod="GET")
+    @GetMapping("/checkPwd")
+    public ResultModel checkPwd( String userId, String password, String email ){
+        User user = userService.getById(userId);
+        String newPassword = MD5Util.md5(password, email);
+        boolean res = user.getPassword().equals(newPassword);
+        return ResultModel.ok(res);
     }
 
 }
