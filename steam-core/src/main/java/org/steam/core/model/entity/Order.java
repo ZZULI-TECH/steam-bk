@@ -2,11 +2,13 @@ package org.steam.core.model.entity;
 
 import java.math.BigDecimal;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.steam.common.model.VersionEntity;
 import com.baomidou.mybatisplus.annotation.TableName;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -124,6 +126,10 @@ public class Order extends VersionEntity {
 
     private LocalDateTime payTime;
 
+
+    //订单包含的游戏
+    @TableField(exist = false)
+    private List<OrderGame> orderGames;
 
 
 }
