@@ -12,12 +12,10 @@ import org.steam.common.exception.ServiceException;
 import org.steam.common.model.ResultModel;
 import org.steam.core.model.entity.Cart;
 import org.steam.core.model.entity.Token;
-import org.steam.core.model.entity.User;
 import org.steam.core.model.vo.AddCartVo;
 import org.steam.core.model.vo.CartListVo;
 import org.steam.core.model.vo.CartOperationVo;
 import org.steam.core.service.ICartService;
-import org.steam.core.util.TokenUtil;
 
 /**
  * <p>

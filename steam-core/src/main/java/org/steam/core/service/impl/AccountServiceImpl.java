@@ -3,13 +3,11 @@ package org.steam.core.service.impl;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.steam.common.exception.ParameterException;
-import org.steam.common.exception.ServerException;
 import org.steam.common.exception.ServiceException;
-import org.steam.common.model.ResultModel;
+
 import org.steam.common.util.MD5Util;
 import org.steam.core.model.entity.Token;
 import org.steam.core.model.entity.User;
@@ -18,7 +16,6 @@ import org.steam.core.service.TokenService;
 import org.steam.core.service.UserService;
 import org.steam.core.service.VerificationCodeService;
 
-import java.util.Objects;
 
 /**
  * @author mingshan
