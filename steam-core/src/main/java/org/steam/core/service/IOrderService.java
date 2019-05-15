@@ -20,7 +20,7 @@ public interface IOrderService extends IService<Order> {
      * 购物车商品创建订单
      * @param uid 用户id
      */
-    void createOrderFromCart(Long uid) throws ServiceException;
+    Long createOrderFromCart(Long uid) throws ServiceException;
 
     /**
      * 商品立即下单
@@ -28,7 +28,7 @@ public interface IOrderService extends IService<Order> {
      * @param gameId 游戏id
      * @param num 数量
      */
-    void createOrderQuickly(Long uid , Long gameId ,Integer num) throws ServiceException;
+    Long createOrderQuickly(Long uid , Long gameId ,Integer num) throws ServiceException;
 
     /**
      * 取消订单

@@ -1,6 +1,8 @@
 package org.steam.core.web;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -11,9 +13,11 @@ import org.springframework.web.bind.annotation.*;
 import org.steam.common.annotation.Authorization;
 import org.steam.common.exception.ServerException;
 import org.steam.common.exception.ServiceException;
+import org.steam.common.exception.VersionException;
 import org.steam.common.model.ResultModel;
 import org.steam.core.model.entity.Order;
 import org.steam.core.model.entity.Token;
+import org.steam.core.model.entity.User;
 import org.steam.core.model.vo.CreateOrderVO;
 import org.steam.core.model.vo.OrderVO;
 import org.steam.core.service.IOrderService;
@@ -40,12 +44,13 @@ public class OrderController {
     public ResultModel createOrderFromCart(@PathVariable long userId){
         ResultModel<Token> model;
         try {
-            orderService.createOrderFromCart(userId);
+            Long  orderFromCart= orderService.createOrderFromCart(userId);
+            return ResultModel.ok(orderFromCart);
         } catch (ServiceException e) {
             model = ResultModel.fail(e.getCode(), e.getMessage());
             throw new ServerException(model, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return ResultModel.ok();
+
     }
 
     @ApiOperation(value="在游戏页面点击立即下单，即不添加购物车直接下单", httpMethod="POST")
@@ -55,12 +60,13 @@ public class OrderController {
                                           @RequestBody CreateOrderVO orderVO){
         ResultModel<Token> model;
         try {
-            orderService.createOrderQuickly(userId,orderVO.getGameId(),orderVO.getNum());
+            Long orderQuickly = orderService.createOrderQuickly(userId, orderVO.getGameId(), orderVO.getNum());
+            return ResultModel.ok(orderQuickly);
         } catch (ServiceException e) {
             model = ResultModel.fail(e.getCode(), e.getMessage());
             throw new ServerException(model, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return ResultModel.ok();
+
     }
 
     @ApiOperation(value="取消未付款的订单", httpMethod="POST")
@@ -100,6 +106,32 @@ public class OrderController {
         ResultModel<Order> model;
         model = ResultModel.ok(orderService.orderInfo(id));
         return new ResponseEntity<>(model, HttpStatus.OK);
+    }
+
+    @ApiOperation(value="查询所有，带分页", httpMethod="GET")
+    @GetMapping("/list")
+    public ResultModel<IPage> getAllOrderList(Integer pageSize, Integer pageNum, Order order) {
+        Page<Order> page = new Page<>();
+        page.setSize(pageSize);
+        page.setCurrent(pageNum);
+        QueryWrapper<Order> wrapper = new QueryWrapper<>();
+
+        IPage<Order> orders =  orderService.page(page, wrapper);
+        return ResultModel.ok(orders);
+    }
+
+    @ApiOperation(value="更新信息", httpMethod="PUT")
+    @PutMapping
+    public ResultModel<User> updateById(@RequestBody Order order){
+        orderService.updateById(order);
+        return ResultModel.ok();
+    }
+
+    @ApiOperation(value="删除", httpMethod="DELETE")
+    @DeleteMapping("/{id}")
+    public ResultModel<User> delete(@PathVariable Long id){
+        orderService.removeById(id);
+        return ResultModel.ok();
     }
 
 }

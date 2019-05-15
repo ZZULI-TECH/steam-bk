@@ -1,5 +1,6 @@
 package org.steam.core.model.vo;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -7,6 +8,7 @@ import org.steam.core.model.entity.Order;
 import org.steam.core.model.entity.OrderGame;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -16,6 +18,7 @@ import java.util.List;
 @Getter
 @Setter
 @ToString
+@JsonIgnoreProperties(value = {"handler"})
 public class OrderListVo {
     //订单id
     private Long id;
@@ -26,7 +29,7 @@ public class OrderListVo {
     //订单金额
     private BigDecimal orderAmount;
     //订单生成时间
-    private BigDecimal gmtCreate;
+    private LocalDate gmtCreate;
     //订单包含的游戏
     private List<OrderGame> orderGames;
 }

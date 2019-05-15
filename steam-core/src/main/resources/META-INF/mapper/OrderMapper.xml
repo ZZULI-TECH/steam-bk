@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.steam.core.repository.OrderMapper">
 
-    <resultMap id="orderResultMap" type="org.steam.core.model.entity.Order">
+    <resultMap id="orderResultMap" type="org.steam.core.model.vo.OrderListVo">
         <id column="id" property="id"/>
         <result column="order_sn" property="orderSn"/>
         <result column="uid" property="uid"/>
@@ -44,7 +44,7 @@
         SELECT * FROM t_order WHERE id = #{id} and deleted = 0
     </select>
 
-    <select id="selectOrderListByUid"  resultMap="orderResultMap">
+    <select id="selectOrderListByUid"  resultMap="orderListResultMap">
         SELECT * FROM t_order
         WHERE
         uid = #{order.uid}
