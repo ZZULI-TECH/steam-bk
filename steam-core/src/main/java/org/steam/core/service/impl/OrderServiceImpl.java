@@ -119,7 +119,8 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
             pageSize=30;
         }
         Page<OrderListVo> page=new Page<>(pageNum,pageSize);
-        return this.baseMapper.selectOrderListByUid(page,order);
+        page.setRecords(this.baseMapper.selectOrderListByUid(page,order));
+        return page;
     }
 
     @Override

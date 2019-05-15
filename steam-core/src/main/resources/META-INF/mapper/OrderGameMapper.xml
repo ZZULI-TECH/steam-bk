@@ -3,7 +3,7 @@
 <mapper namespace="org.steam.core.repository.OrderGameMapper">
 
     <select id="selectOrderGameList"  parameterType="java.lang.Long" resultType="org.steam.core.model.entity.OrderGame">
-        SELECT * FROM t_order_game WHERE id = #{orderId} and deleted = 0
+        SELECT * FROM t_order_game WHERE order_id = #{orderId} and deleted = 0
     </select>
 
 </mapper>
