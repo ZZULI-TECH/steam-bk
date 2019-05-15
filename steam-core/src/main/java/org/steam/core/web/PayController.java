@@ -7,6 +7,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.steam.common.annotation.Authorization;
 import org.steam.common.exception.ServerException;
@@ -26,7 +27,7 @@ import java.io.IOException;
 import java.util.Map;
 
 @Api(value = "pay")
-@RestController
+@Controller
 @RequestMapping("/api/pay")
 public class PayController {
 
@@ -37,21 +38,21 @@ public class PayController {
 
     @ApiOperation(value="支付订单", httpMethod="POST")
     @Authorization
-    @PostMapping("/payOrder/{userId}")
-    public ResultModel payOrder(@PathVariable long userId, @RequestBody PayVo payVo){
-        ResultModel<Token> model;
+    @GetMapping("/payOrder")
+    public String payOrder(String out_trade_no){
+        String orderId= out_trade_no.substring(0,19);
         try {
-            payService.pay(payVo.getOrderId(),userId);
+            payService.pay(Long.parseLong(orderId));
         } catch (ServiceException e) {
-            model = ResultModel.fail(e.getCode(), e.getMessage());
-            throw new ServerException(model, HttpStatus.INTERNAL_SERVER_ERROR);
+            return "redirect:http://localhost:9090/lib";
         }
-        return ResultModel.ok();
+        return "redirect:http://localhost:9090/lib";
     }
 
 
 
     @ApiOperation(value="支付订单", httpMethod="POST")
+    @ResponseBody
     @RequestMapping("/notify")
     public String payNotify(HttpServletRequest request){
         try {

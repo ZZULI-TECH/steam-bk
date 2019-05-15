@@ -78,8 +78,8 @@ public class AliPayController extends AliPayApiController {
 			String totalAmount = order.getOrderAmount().toString();
 			String outTradeNo =orderId+IdWorker.getMillisecond().substring(11);
 			log.info("pc outTradeNo>"+outTradeNo);
-			String returnUrl = aliPayBean.getDomain() + "/alipay/return_url";
-			String notifyUrl = aliPayBean.getDomain() + "/alipay/notify_url";
+			String returnUrl = aliPayBean.getDomain() + "/api/pay/payOrder";
+			String notifyUrl = aliPayBean.getDomain() + "/api/pay/notify";
 			AlipayTradePagePayModel model = new AlipayTradePagePayModel();
 			model.setOutTradeNo(outTradeNo);
 			model.setProductCode("FAST_INSTANT_TRADE_PAY");

@@ -35,20 +35,18 @@ public class PayServiceImpl implements IPayService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void pay(Long orderId, Long uid) throws ServiceException {
+    public void pay(Long orderId) throws ServiceException {
         synchronized (this){
             Order order = orderService.getById(orderId);
             if(order == null){
                 log.error("订单不存在");
-                throw new ServiceException(1005, "order not exist");
-            }
-            if(!order.getUid().equals(uid)){
-                log.error("不是此人订单");
-                throw new ServiceException(1005, "order not exist");
+//                throw new ServiceException(1005, "order not exist");
+                return;
             }
             if (!OrderStatusEnum.CREATED.getCode().equals(order.getOrderStatus())){
                 log.error("订单已支付");
-                throw new ServiceException(1006, "order has paid");
+//                throw new ServiceException(1006, "order has paid");
+                return;
             }
             if(order.getNeedShipping()){
                 //需要发货，订单置为已发货状态
@@ -63,9 +61,10 @@ public class PayServiceImpl implements IPayService {
                     .setPayName("wxPay")
                     .setPayTime(LocalDateTime.now());
             orderService.updateById(order);
+            gameLibraryService.addToLibrary(orderId,order.getUid());
         }
         //数字游戏入库
-        gameLibraryService.addToLibrary(orderId,uid);
+
     }
 
 
