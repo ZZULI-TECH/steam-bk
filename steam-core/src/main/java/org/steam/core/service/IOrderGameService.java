@@ -14,7 +14,6 @@ import java.util.List;
  *  订单商品服务类
  * </p>
  *
- * @author biao
  * @since 2019-05-02
  */
 public interface IOrderGameService extends IService<OrderGame> {

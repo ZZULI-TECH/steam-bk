@@ -25,7 +25,6 @@ import java.io.IOException;
 import java.util.UUID;
 
 /**
- * @author mingshan
  */
 @Api(value = "file")
 @RestController

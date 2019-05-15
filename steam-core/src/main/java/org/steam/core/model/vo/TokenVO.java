@@ -10,7 +10,7 @@ import java.io.Serializable;
 /**
  * 登录实体
  *
- * @author mingshan
+
  */
 @Data
 @EqualsAndHashCode(callSuper = false)

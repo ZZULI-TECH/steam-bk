@@ -13,7 +13,6 @@ package org.steam.core.model.entity;
     * 购物车表
     * </p>
 *
-* @author biao
 * @since 2019-04-28
 */
 @Data

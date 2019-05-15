@@ -10,7 +10,6 @@ import java.io.Serializable;
 /**
  * 封装结果实体类
  *
- * @author mingshan
  */
 @Data
 @EqualsAndHashCode(callSuper = false)

@@ -13,8 +13,6 @@ import java.util.List;
  * <p>
  *  Mapper 接口
  * </p>
- *
- * @author biao
  * @since 2019-04-28
  */
 @Mapper

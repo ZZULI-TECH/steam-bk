@@ -16,7 +16,6 @@ import java.util.Date;
 /**
  * Token工具类
  *
- * @author mingshan
  */
 public class JWTUtil {
 

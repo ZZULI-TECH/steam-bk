@@ -7,8 +7,6 @@ import org.steam.common.model.VersionEntity;
 /**
  * 用户实体
  *
- * @author mingshan biao
- * @modify liyufeng  add age,sex
  */
 @Data
 @TableName(value = "t_user")

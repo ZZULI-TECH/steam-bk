@@ -22,7 +22,6 @@ import org.steam.core.service.ICartService;
  * 购物车表 前端控制器
  * </p>
  *
- * @author biao
  * @since 2019-04-28
  */
 @RestController

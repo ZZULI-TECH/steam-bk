@@ -7,7 +7,7 @@ import lombok.ToString;
 import java.io.Serializable;
 
 /**
- * @author mingshan
+
  */
 @Getter
 @Setter

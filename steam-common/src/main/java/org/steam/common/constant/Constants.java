@@ -3,7 +3,7 @@ package org.steam.common.constant;
 /**
  * 公共常量配置类
  *
- * @author mingshan
+
  */
 public class Constants {
 

@@ -10,7 +10,6 @@ import java.lang.annotation.RetentionPolicy;
 /**
  * 事务统一注解
  *
- * @author mingshan
  */
 @Documented
 @Retention(RetentionPolicy.RUNTIME)

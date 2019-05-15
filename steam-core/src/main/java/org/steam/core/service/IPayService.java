@@ -16,7 +16,6 @@ public interface IPayService {
      * 支付订单
      * @param orderId 订单id
      * @throws ServiceException 系统服务一场
-     * @author biao
      */
     void pay(Long orderId) throws ServiceException;
 

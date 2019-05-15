@@ -17,7 +17,6 @@ import org.steam.core.service.UserService;
 /**
  *
  *
- * @author mingshan
  */
 @Component
 public class CurrentUserMethodArgumentResolver implements HandlerMethodArgumentResolver {

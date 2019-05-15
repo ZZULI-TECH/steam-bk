@@ -9,7 +9,6 @@ import org.steam.core.model.entity.User;
 /**
  * Token 工具类
  *
- * @author mingshan
  */
 @Slf4j
 public class TokenUtil {

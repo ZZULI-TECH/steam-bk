@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
  *  前端控制器
  * </p>
  *
- * @author biao
  * @since 2019-04-28
  */
 @RestController

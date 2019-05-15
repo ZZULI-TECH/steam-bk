@@ -2,7 +2,6 @@ package org.steam.common.constant;
 
 /**
  * 订单状态枚举类
- * @author biao
  */
 
 public enum OrderStatusEnum {

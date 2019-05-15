@@ -11,7 +11,6 @@ import org.steam.core.service.UserService;
 import org.steam.core.util.VersionUtil;
 
 /**
- * @author mingshan
  */
 @Service
 public class UserServiceImpl extends ServiceImpl<UserMapper,User> implements UserService {

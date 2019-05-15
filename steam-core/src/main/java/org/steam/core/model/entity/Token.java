@@ -7,7 +7,6 @@ import java.io.Serializable;
 
 /**
  * 进行登录认证实体类
- * @author mingshan
  */
 @Data
 @EqualsAndHashCode(callSuper = false)

@@ -22,7 +22,6 @@ import org.steam.core.util.TokenUtil;
  * 用户游戏库 前端控制器
  * </p>
  *
- * @author biao
  * @since 2019-04-28
  */
 @Api(value = "game-library")

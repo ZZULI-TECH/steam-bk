@@ -8,7 +8,6 @@ import java.lang.annotation.Target;
 /**
  * 认证注解
  *
- * @author mingshan
  */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)

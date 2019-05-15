@@ -7,7 +7,6 @@ import org.steam.core.model.entity.User;
 /**
  * Token服务接口
  *
- * @author mingshan
  */
 public interface TokenService {
 

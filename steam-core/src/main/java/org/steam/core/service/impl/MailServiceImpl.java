@@ -18,7 +18,6 @@ import javax.mail.internet.MimeMessage;
 import java.io.File;
 
 /**
- * @author mingshan
  */
 @Service
 @Slf4j

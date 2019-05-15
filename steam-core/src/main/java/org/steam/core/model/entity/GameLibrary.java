@@ -12,7 +12,6 @@ import org.steam.common.model.VersionEntity;
  * 用户游戏库
  * </p>
  *
- * @author biao
  * @since 2019-04-28
  */
 @Data

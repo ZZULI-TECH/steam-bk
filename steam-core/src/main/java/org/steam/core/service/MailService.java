@@ -5,7 +5,6 @@ import org.steam.common.exception.ServiceException;
 /**
  * 邮件服务
  *
- * @author mingshan
  */
 public interface MailService {
     /**

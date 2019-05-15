@@ -10,7 +10,6 @@ import java.time.LocalDateTime;
 /**
  * 基础实体（数据库映射）
  *
- * @author mingshan
  */
 @Data
 @EqualsAndHashCode(callSuper = false)

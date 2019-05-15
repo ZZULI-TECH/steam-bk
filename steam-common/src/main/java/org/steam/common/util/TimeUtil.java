@@ -19,7 +19,6 @@ import java.time.format.DateTimeFormatter;
 /**
  * Provides common methods to operate time with JDK8.
  *
- * @author mingshan
  */
 public class TimeUtil {
     private static final DateTimeFormatter DEFAULT_DATE_TIME_FORMATTER = TimeFormat.LONG_DATE_PATTERN_LINE_24.formatter;

@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * @author mingshan
  */
 @Component
 public class ProcessInterceptor implements HandlerInterceptor {

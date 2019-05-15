@@ -8,7 +8,6 @@ import org.steam.core.model.entity.User;
 /**
  * 用户服务接口
  *
- * @author mingshan
  */
 public interface UserService extends IService<User> {
 

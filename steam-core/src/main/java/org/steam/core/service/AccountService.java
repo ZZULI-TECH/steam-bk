@@ -7,7 +7,6 @@ import org.steam.core.model.entity.User;
 /**
  * 登录服务
  *
- * @author mingshan
  */
 public interface AccountService {
 

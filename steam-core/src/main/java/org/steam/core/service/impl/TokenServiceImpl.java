@@ -16,7 +16,6 @@ import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @author mingshan
  */
 @Slf4j
 @Service

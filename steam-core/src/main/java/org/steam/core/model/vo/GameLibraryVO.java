@@ -7,7 +7,7 @@ import org.steam.common.model.Entity;
 import org.steam.core.model.entity.Game;
 
 /**
- * @author mingshan
+
  */
 @Getter
 @Setter

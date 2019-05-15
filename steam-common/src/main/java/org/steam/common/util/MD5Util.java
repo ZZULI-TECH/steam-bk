@@ -5,7 +5,6 @@ import org.springframework.util.DigestUtils;
 /**
  * Encryption util with MD5
  *
- * @author mingshan
  */
 public class MD5Util {
 

@@ -14,7 +14,6 @@ import org.steam.core.util.VersionUtil;
  *  服务实现类
  * </p>
  *
- * @author biao
  * @since 2019-04-28
  */
 @Service

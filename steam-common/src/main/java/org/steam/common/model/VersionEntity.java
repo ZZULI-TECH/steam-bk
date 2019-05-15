@@ -7,7 +7,6 @@ import lombok.EqualsAndHashCode;
 /**
  * 带有乐观锁版本号的实体
  *
- * @author mingshan
  */
 @Data
 @EqualsAndHashCode(callSuper = false)

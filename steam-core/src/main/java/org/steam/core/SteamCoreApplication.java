@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 /**
  * 启动类
  *
- * @author mingshan
  */
 @SpringBootApplication
 @MapperScan("org.steam.core.repository")

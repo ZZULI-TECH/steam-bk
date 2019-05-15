@@ -7,7 +7,6 @@ import java.util.List;
 /**
  * 字符串工具类
  *
- * @author mingshan
  */
 public class StringUtil {
 

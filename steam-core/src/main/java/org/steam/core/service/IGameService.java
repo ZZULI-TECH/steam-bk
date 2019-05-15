@@ -10,7 +10,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  *  服务类
  * </p>
  *
- * @author biao
  * @since 2019-04-28
  */
 public interface IGameService extends IService<Game> {

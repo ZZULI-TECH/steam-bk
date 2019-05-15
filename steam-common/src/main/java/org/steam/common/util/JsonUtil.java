@@ -9,7 +9,6 @@ import java.util.Map;
 /**
  * Json 工具类，封装自fastjson
  *
- * @author mingshan
  */
 public class JsonUtil {
     /**

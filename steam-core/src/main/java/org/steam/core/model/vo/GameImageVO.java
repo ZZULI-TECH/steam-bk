@@ -6,7 +6,7 @@ import lombok.ToString;
 import org.steam.common.model.Entity;
 
 /**
- * @author mingshan
+
  */
 @Getter
 @Setter

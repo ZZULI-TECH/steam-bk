@@ -13,7 +13,6 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @author mingshan
  */
 @Service
 public class VerificationCodeServiceImpl implements VerificationCodeService {

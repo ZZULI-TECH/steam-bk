@@ -22,7 +22,6 @@ import org.steam.core.service.VerificationCodeService;
 /**
  * 帐户
  *
- * @author mingshan
  */
 @Api(value = "account")
 @RestController

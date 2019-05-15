@@ -11,7 +11,6 @@ import org.steam.core.model.vo.OrderListVo;
  *  服务类
  * </p>
  *
- * @author biao
  * @since 2019-04-28
  */
 public interface IOrderService extends IService<Order> {

@@ -22,7 +22,7 @@ import org.steam.core.util.TokenUtil;
 import javax.validation.Valid;
 
 /**
- * @author mingshan
+ * 
  */
 @Api(value = "user")
 @RestController

@@ -23,8 +23,6 @@ import java.util.Map;
  * 购物车表 服务实现类
  * </p>
  *
- * @author biao
- * @since 2019-04-28
  */
 @Service
 public class CartServiceImpl extends ServiceImpl<CartMapper, Cart> implements ICartService {

@@ -10,7 +10,6 @@ import org.steam.core.model.vo.GameLibraryVO;
  * 用户游戏库 服务类
  * </p>
  *
- * @author biao
  * @since 2019-04-28
  */
 public interface IGameLibraryService extends IService<GameLibrary> {

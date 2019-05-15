@@ -17,9 +17,6 @@ import org.steam.core.service.UserService;
 import org.steam.core.service.VerificationCodeService;
 
 
-/**
- * @author mingshan
- */
 @Slf4j
 @Service
 public class AccountServiceImpl implements AccountService {

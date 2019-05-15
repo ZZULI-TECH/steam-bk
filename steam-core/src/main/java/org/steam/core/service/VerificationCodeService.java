@@ -5,7 +5,6 @@ import org.steam.common.exception.ServiceException;
 /**
  * 验证码服务
  *
- * @author mingshan
  */
 public interface VerificationCodeService {
 

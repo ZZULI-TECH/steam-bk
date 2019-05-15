@@ -16,7 +16,6 @@ import java.lang.reflect.Method;
 /**
  * The custom interceptor that checks out the current request has authorization.
  *
- * @author: mingshan
  */
 @Component
 public class AuthorizationInterceptor extends HandlerInterceptorAdapter {
