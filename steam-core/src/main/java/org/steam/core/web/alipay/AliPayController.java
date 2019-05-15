@@ -30,7 +30,7 @@ import java.util.List;
 
 
 @Controller
-@RequestMapping("/api/alipay")
+@RequestMapping("/alipay")
 public class AliPayController extends AliPayApiController {
     private static final Logger log = LoggerFactory.getLogger(AliPayController.class);
 

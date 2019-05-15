@@ -41,13 +41,15 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
 
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public  Long createOrderFromCart(Long uid) throws ServiceException {
-        synchronized (this){
         CartListVo cartListVo = cartService.listMyCart(uid);
             Order order=new Order();
             order.setOrderSn(IdWorker.getTimeId());
             order.setUid(uid);
+            if(cartListVo.getTotalPrice().equals(BigDecimal.ZERO)){
+                cartListVo.setTotalPrice(BigDecimal.valueOf(0.01));
+            }
             order.setOrderAmount(cartListVo.getTotalPrice());
             order.setNeedShipping(needShipping(cartListVo.getCartList()));
             if(order.getNeedShipping()){
@@ -63,7 +65,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
             //清除购物车
             cartService.removeAll(uid);
             return  order.getId();
-        }
+
 
     }
 
