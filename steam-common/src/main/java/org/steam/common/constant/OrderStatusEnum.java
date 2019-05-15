@@ -42,4 +42,13 @@ public enum OrderStatusEnum {
         return this.desc;
     }
 
+    public String valueOf(int code) {
+        for (OrderStatusEnum item : values()) {
+            if (item.code == code) {
+                return item.desc;
+            }
+        }
+
+        throw new IllegalArgumentException("No enum");
+    }
 }
