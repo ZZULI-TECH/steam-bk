@@ -2,6 +2,7 @@ package org.steam.core.model.entity;
 
 import java.math.BigDecimal;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.steam.common.model.VersionEntity;
 import com.baomidou.mybatisplus.annotation.TableName;
 
@@ -21,6 +22,7 @@ import lombok.experimental.Accessors;
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
+@JsonIgnoreProperties(value = {"handler"})
 @Accessors(chain = true)
 @TableName("t_order")
 public class Order extends VersionEntity {
