@@ -44,12 +44,13 @@ public class OrderController {
     public ResultModel createOrderFromCart(@PathVariable long userId){
         ResultModel<Token> model;
         try {
-            orderService.createOrderFromCart(userId);
+            Long  orderFromCart= orderService.createOrderFromCart(userId);
+            return ResultModel.ok(orderFromCart);
         } catch (ServiceException e) {
             model = ResultModel.fail(e.getCode(), e.getMessage());
             throw new ServerException(model, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return ResultModel.ok();
+
     }
 
     @ApiOperation(value="在游戏页面点击立即下单，即不添加购物车直接下单", httpMethod="POST")
@@ -59,12 +60,13 @@ public class OrderController {
                                           @RequestBody CreateOrderVO orderVO){
         ResultModel<Token> model;
         try {
-            orderService.createOrderQuickly(userId,orderVO.getGameId(),orderVO.getNum());
+            Long orderQuickly = orderService.createOrderQuickly(userId, orderVO.getGameId(), orderVO.getNum());
+            return ResultModel.ok(orderQuickly);
         } catch (ServiceException e) {
             model = ResultModel.fail(e.getCode(), e.getMessage());
             throw new ServerException(model, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return ResultModel.ok();
+
     }
 
     @ApiOperation(value="取消未付款的订单", httpMethod="POST")

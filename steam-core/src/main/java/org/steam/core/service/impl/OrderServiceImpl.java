@@ -44,7 +44,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
 
     @Override
     @Transactional
-    public  void createOrderFromCart(Long uid) throws ServiceException {
+    public  Long createOrderFromCart(Long uid) throws ServiceException {
         synchronized (this){
         CartListVo cartListVo = cartService.listMyCart(uid);
             Order order=new Order();
@@ -64,12 +64,13 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
             orderGameService.createOrderGameFromCart(cartListVo.getCartList(),order.getId());
             //清除购物车
             cartService.removeAll(uid);
+            return  order.getId();
         }
 
     }
 
     @Override
-    public void createOrderQuickly(Long uid, Long gameId, Integer num) throws ServiceException {
+    public Long createOrderQuickly(Long uid, Long gameId, Integer num) throws ServiceException {
         Game game = gameService.getById(gameId);
         synchronized (this){
             Order order=new Order();
@@ -87,6 +88,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
             this.baseMapper.insert(order);
             //生成订单游戏列表
             orderGameService.createOrderGameQuickly(game,order.getId(),num);
+            return  order.getId();
         }
 
     }
