@@ -89,10 +89,15 @@ public class OrderController {
     public ResponseEntity<ResultModel> orderList(@PathVariable long userId,
                                                    @PathVariable Integer pageNum ,
                                                    @PathVariable Integer pageSize,
-                                                   @PathVariable(required = false) Integer orderStatus){
+                                                   @PathVariable(required = false) String orderStatus){
         ResultModel<Page> model;
         Order order=new Order();
-        order.setUid(userId).setOrderStatus(orderStatus);
+        if (!"null".equals(orderStatus) && orderStatus != null){
+            order.setUid(userId).setOrderStatus(Integer.parseInt(orderStatus));
+        } else {
+            order.setUid(userId);
+        }
+
         model = ResultModel.ok(orderService.orderList(pageNum,pageSize,order));
         return new ResponseEntity<>(model, HttpStatus.OK);
     }
