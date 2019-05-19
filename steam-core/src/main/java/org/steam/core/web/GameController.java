@@ -54,9 +54,10 @@ public class GameController {
     private MapperFacade orikaMapperFacade;
 
     @ApiOperation(value="新增游戏", httpMethod="POST", notes="新增游戏")
-    @PostMapping
+    @PostMapping("add")
     public ResultModel save(@RequestBody GameVO gameVO) {
         Game game = orikaMapperFacade.map(gameVO, Game.class);
+        game.setOnSale(true);
         gameService.save(game);
 
         return ResultModel.ok();

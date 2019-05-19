@@ -42,7 +42,7 @@ public class FileController {
      */
     @RequestMapping(value = "/image", method = RequestMethod.POST)
     @ApiOperation(value="Upload image to qiniu.", httpMethod="POST", notes="")
-    public ResultModel uploadPic(MultipartFile file, HttpServletRequest request) {
+    public ResultModel uploadPic( MultipartFile file, HttpServletRequest request) {
 
         Configuration cfg = new Configuration(Zone.zone0());
         UploadManager uploadManager = new UploadManager(cfg);
