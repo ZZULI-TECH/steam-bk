@@ -3,6 +3,7 @@ package org.steam.core.service;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import org.steam.core.model.entity.GameLibrary;
+import org.steam.core.model.entity.Order;
 import org.steam.core.model.vo.GameLibraryVO;
 
 /**
@@ -31,4 +32,5 @@ public interface IGameLibraryService extends IService<GameLibrary> {
      */
     Page<GameLibraryVO> listLibrary(Integer page, Integer size, Long uid);
 
+    Order getOreder(Long uid, Long gameId);
 }

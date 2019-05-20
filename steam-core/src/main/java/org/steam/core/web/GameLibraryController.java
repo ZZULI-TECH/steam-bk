@@ -59,4 +59,10 @@ public class GameLibraryController {
         gameLibraryService.removeById(id);
         return ResultModel.ok();
     }
+
+    @ApiOperation(value = "根据用户id和游戏id获取订单号", httpMethod = "GET")
+    @GetMapping("getOreder")
+    public ResultModel getOreder( Long uid, Long gameId) {
+        return ResultModel.ok(gameLibraryService.getOreder(uid, gameId));
+    }
 }

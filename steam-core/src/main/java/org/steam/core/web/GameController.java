@@ -20,6 +20,7 @@ import org.steam.common.model.ResultModel;
 import org.steam.core.model.entity.Game;
 import org.steam.core.model.entity.GameComment;
 import org.steam.core.model.entity.GameImage;
+import org.steam.core.model.entity.Order;
 import org.steam.core.model.entity.User;
 import org.steam.core.model.vo.GameCommentVO;
 import org.steam.core.model.vo.GameImageVO;
@@ -113,6 +114,9 @@ public class GameController {
         if (!StringUtils.isEmpty(game.getType())) {
             wrapper.like("type", game.getType());
         }
+        if (!StringUtils.isEmpty(game.getName())) {
+            wrapper.apply("(UPPER(name) like {0} or UPPER(english_name) like {1})", "%"+game.getName().toUpperCase()+"%", "%"+game.getName().toUpperCase()+"%");
+        }
 
         wrapper.orderByDesc("gmt_modified");
 
@@ -162,5 +166,12 @@ public class GameController {
 
         IPage<Game> games = gameService.page(page, wrapper);
         return ResultModel.ok(games);
+    }
+
+    @ApiOperation(value = "更新游戏", httpMethod = "POST")
+    @PostMapping("update")
+    public ResultModel<User> updateById(@RequestBody Game game){
+        gameService.updateById(game);
+        return ResultModel.ok();
     }
 }

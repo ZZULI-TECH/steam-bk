@@ -80,7 +80,7 @@ public class UserController {
         page.setCurrent(pageNum);
         QueryWrapper<User> wrapper = new QueryWrapper<>();
         if (!StringUtils.isEmpty(user.getName())) {
-            wrapper.eq("name", user.getName());
+            wrapper.apply("(UPPER(name) like {0} or UPPER(email) like {1})", "%"+user.getName().toUpperCase()+"%", "%"+user.getName().toUpperCase()+"%");
         }
         if (!StringUtils.isEmpty(user.getSex())) {
             wrapper.eq("sex", user.getSex());

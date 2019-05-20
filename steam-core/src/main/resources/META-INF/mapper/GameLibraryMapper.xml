@@ -34,4 +34,12 @@
             gl.uid = #{uid} AND gl.deleted = 0
     </select>
 
+    <select id="getOrder" resultType="org.steam.core.model.entity.Order">
+       SELECT distinct o.id id, o.order_sn orderSn, o.uid uid, o.order_status orderStatus
+        FROM t_order o
+        LEFT JOIN t_user u on u.id = o.uid
+        LEFT JOIN t_order_game g on o.id = g.order_id
+        WHERE u.id = #{uid} AND g.game_id = #{gameId}
+    </select>
+
 </mapper>

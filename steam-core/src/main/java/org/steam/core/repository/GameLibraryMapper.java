@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.steam.core.model.entity.GameLibrary;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.steam.core.model.entity.Order;
 import org.steam.core.model.vo.GameLibraryVO;
 
 /**
@@ -18,4 +19,5 @@ public interface GameLibraryMapper extends BaseMapper<GameLibrary> {
 
     Page<GameLibraryVO> selectGameLibraryPage(Page<GameLibraryVO> page, @Param("uid")Long uid);
 
+    Order getOrder(@Param("uid") Long uid, @Param("gameId") Long gameId);
 }

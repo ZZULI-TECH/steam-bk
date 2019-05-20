@@ -42,6 +42,9 @@ public class Msg extends VersionEntity {
     @TableField(exist = false)
     private String sex;
 
+    @TableField(exist = false)
+    private String email;
+
 
 
 

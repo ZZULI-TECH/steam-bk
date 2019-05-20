@@ -4,7 +4,7 @@
 
     <select id="selectMsgList" resultType="org.steam.core.model.entity.Msg">
         select
-        m.* ,u.name,u.sex,u.age
+        m.* ,u.name,u.sex,u.age, u.email
         from t_msg m
         left join t_user u on u.id = m.uid
         where m.deleted = 0

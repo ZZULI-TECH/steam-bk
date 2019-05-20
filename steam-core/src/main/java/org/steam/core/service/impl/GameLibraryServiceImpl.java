@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.steam.common.constant.GameTypeEnum;
 import org.steam.core.model.entity.GameLibrary;
+import org.steam.core.model.entity.Order;
 import org.steam.core.model.entity.OrderGame;
 import org.steam.core.model.vo.GameLibraryVO;
 import org.steam.core.repository.GameLibraryMapper;
@@ -28,6 +29,9 @@ public class GameLibraryServiceImpl extends ServiceImpl<GameLibraryMapper, GameL
 
     @Autowired
     private IOrderGameService orderGameService;
+
+    @Autowired
+    private GameLibraryMapper gameLibraryMapper;
 
     @Override
     public void addToLibrary(Long orderId, Long uid) {
@@ -60,5 +64,10 @@ public class GameLibraryServiceImpl extends ServiceImpl<GameLibraryMapper, GameL
         }
         Page<GameLibraryVO> pages=new Page<>(page,size);
         return this.baseMapper.selectGameLibraryPage(pages,uid);
+    }
+
+    @Override
+    public Order getOreder(Long uid, Long gameId) {
+        return gameLibraryMapper.getOrder(uid, gameId);
     }
 }

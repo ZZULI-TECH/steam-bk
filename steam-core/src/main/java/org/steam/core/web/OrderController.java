@@ -9,6 +9,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.steam.common.annotation.Authorization;
 import org.steam.common.exception.ServerException;
@@ -120,12 +121,15 @@ public class OrderController {
         page.setCurrent(pageNum);
         QueryWrapper<Order> wrapper = new QueryWrapper<>();
 
+        if (!StringUtils.isEmpty(order.getOrderStatus())) {
+            wrapper.eq("order_status", order.getOrderStatus());
+        }
         IPage<Order> orders =  orderService.page(page, wrapper);
         return ResultModel.ok(orders);
     }
 
-    @ApiOperation(value="更新信息", httpMethod="PUT")
-    @PutMapping
+    @ApiOperation(value="更新信息", httpMethod="POST")
+    @PostMapping("/update")
     public ResultModel<User> updateById(@RequestBody Order order){
         orderService.updateById(order);
         return ResultModel.ok();
