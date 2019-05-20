@@ -16,14 +16,6 @@ import org.steam.core.model.vo.GameLibraryVO;
  */
 public interface GameLibraryMapper extends BaseMapper<GameLibrary> {
 
-    @Select("SELECT\n" +
-            "            gl.id,gl.uid,gl.game_id,gl.gmt_create,gl.gmt_modified,gl.version,\n" +
-            "            g.name,g.type,g.english_name,g.click_count,g.sales,g.price,g.cover,g.keywords,g.remark,g.content,g.download_url\n" +
-            "        FROM\n" +
-            "            t_game_library gl\n" +
-            "            LEFT JOIN t_game g on gl.game_id = g.id\n" +
-            "        WHERE\n" +
-            "            gl.uid = #{uid} AND gl.deleted = 0")
     Page<GameLibraryVO> selectGameLibraryPage(Page<GameLibraryVO> page, @Param("uid")Long uid);
 
 }
