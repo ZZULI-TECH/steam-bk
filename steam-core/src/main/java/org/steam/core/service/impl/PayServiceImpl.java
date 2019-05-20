@@ -53,7 +53,7 @@ public class PayServiceImpl implements IPayService {
                 order.setOrderStatus(OrderStatusEnum.NEED_SHIPPING.getCode());
             }else {
                 //不需要发货，订单设为已完成
-                order.setOrderStatus(OrderStatusEnum.FINISHED.getCode());
+                order.setOrderStatus(OrderStatusEnum.NEED_SHIPPING.getCode());
                 order.setConfirmTime(LocalDateTime.now());
             }
             order.setTotalAmount(order.getOrderAmount())
