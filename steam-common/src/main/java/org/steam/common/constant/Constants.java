@@ -65,7 +65,7 @@ public class Constants {
 
     public static final String QINIU_SECRET_KEY = "T3JX0edq22jn9Yqr2yttjQtg41rZtpLTaOAV55WW";
 
-    public static final String QINIU_UPLOAD_TOKEN = "imgforsteam";
+    public static final String QINIU_UPLOAD_TOKEN = "imgforaa";
 
-    public static final String QINIU_UPLOAD_URL = "http://pqz5kqmmn.bkt.clouddn.com";
+    public static final String QINIU_UPLOAD_URL = "http://psj2r6emd.bkt.clouddn.com";
 }
