@@ -52,13 +52,13 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
             }
             order.setOrderAmount(cartListVo.getTotalPrice());
             order.setNeedShipping(needShipping(cartListVo.getCartList()));
-            if(order.getNeedShipping()){
-                //需要发货，设置发货地址
-                User user = userService.getById(uid);
-                order.setAddress(user.getAddress());
-                order.setConsignee(user.getName());
-            }
-            order.setOrderStatus(2);
+//            if(order.getNeedShipping()){
+//                //需要发货，设置发货地址
+//                User user = userService.getById(uid);
+//                order.setAddress(user.getAddress());
+//                order.setConsignee(user.getName());
+//            }
+//            order.setOrderStatus(2);
             //创建订单
             this.baseMapper.insert(order);
             //生成订单游戏列表

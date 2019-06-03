@@ -41,11 +41,11 @@ public class GameLibraryServiceImpl extends ServiceImpl<GameLibraryMapper, GameL
         }
         List<GameLibrary> gameLibraries=new ArrayList<>();
         for (OrderGame orderGame:orderGames){
-            if (GameTypeEnum.DIGITAL.getCode().equals(orderGame.getGameType())){
-                GameLibrary gameLibrary=new GameLibrary();
-                gameLibrary.setGameId(orderGame.getGameId()).setUid(uid);
-                gameLibraries.add(gameLibrary);
-            }
+//            if (GameTypeEnum.DIGITAL.getCode().equals(orderGame.getGameType())){
+            GameLibrary gameLibrary=new GameLibrary();
+            gameLibrary.setGameId(orderGame.getGameId()).setUid(uid);
+            gameLibraries.add(gameLibrary);
+//            }
         }
         if(gameLibraries.size() > 1){
             this.saveBatch(gameLibraries);
