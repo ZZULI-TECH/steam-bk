@@ -36,7 +36,7 @@
     <jedis.version>2.6.1</jedis.version>
     <springfox-swagger-ui.version>2.6.1</springfox-swagger-ui.version>
     <jjwt.version>0.9.0</jjwt.version>
-    <fastjson.version>1.2.47</fastjson.version>
+    <fastjson.version>1.2.83</fastjson.version>
     <javaee-api.version>8.0</javaee-api.version>
     <mybatis-plus.version>3.1.1</mybatis-plus.version>
     <freemarker.version>2.3.28</freemarker.version>
